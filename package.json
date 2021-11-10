@@ -1,0 +1,25 @@
+{
+  "name": "Curso-Backend-Marchi-Coderhouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node script.js",
+    "dev": "nodemon script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse/issues"
+  },
+  "homepage": "https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
