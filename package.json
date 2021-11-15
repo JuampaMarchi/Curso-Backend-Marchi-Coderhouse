@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node script.js",
-    "dev": "nodemon script.js"
+    "test": "jest",
+    "start": "node scripts/script.js",
+    "dev": "nodemon scripts/script.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse#readme",
   "devDependencies": {
+    "jest": "^27.3.1",
     "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1"
   }
 }

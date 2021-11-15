@@ -4,16 +4,18 @@ class Contenedor {
     constructor(fileUrl){
         this.url = fileUrl
     }
-    read(){
+    async read(){
         try {
-            return fs.readFileSync(this.url, 'utf-8')
+            const res = await fs.promises.readFile(this.url, 'utf-8')
+            return res
         } catch (error) {
             console.log(`El programa encontró el siguiente error: ${error}`)
         }
     }
-    save(obj){
+    async save(obj){
         try {
-            const fileObject = JSON.parse(this.read())
+            const res = await this.read()
+            const fileObject = JSON.parse(res)
             const idCheck = fileObject.some((e)=>{
                 e.id === obj.id
             })
@@ -21,7 +23,7 @@ class Contenedor {
                 throw new Error(`El id "${obj.id}" se encuentra repetido`)
             }
             fileObject.push(obj)
-            fs.writeFileSync(this.url, JSON.stringify(fileObject))
+            await fs.promises.writeFile(this.url, JSON.stringify(fileObject))
             return `El id asignado fue "${obj.id}"`
         } catch (error) {
             console.log(`El programa encontró el siguiente error: ${error}`)
@@ -67,15 +69,21 @@ class Contenedor {
         }
     }
 }
-let container = new Contenedor('./productos.json')
-// let newProd = {
-//     "name": "producto4",
-//     "price": 40,
-//     "id": 4
-// }
-// console.log(container.read())
-// container.save(newProd)
-// console.log(container.read())
+async function test(){
+    let container = new Contenedor('./productos.json')
+    let newProd = {
+        "name": "producto4",
+        "price": 40,
+        "id": 4
+    }
+    let file = await container.read()
+    console.log(file)
+    await container.save(newProd)
+    file = await container.read()
+    console.log(file)
+}
+module.exports = {Contenedor}
+//test()
 
 // console.log(container.getById(3))
 // console.log(container.getById(5))
