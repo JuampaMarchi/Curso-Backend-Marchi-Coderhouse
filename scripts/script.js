@@ -1,33 +1,25 @@
-const moment = require('moment')
+const fs = require('fs')
 const express = require('express')
 const app = express()
-const PORT = 777
-const FRASE = 'Hola Viteh'
+const PORT = 8080
+const file = fs.readFileSync('./productos.json', 'utf-8')
+let fileObject = JSON.parse(file)
 
-app.get('/frase', function(req, res, next){
-    
-    res.json({"frase": FRASE})
+app.get('/', function(req, res, next){
+    res.send('Hola Mundo')
 })
 
-app.get('/letras/:num', function(req, res, next){
-    let {num} = req.params
-    let response = null
-    if(Number(num)){
-        let frase = FRASE.split("");
-        let finalNum = num - 1;
-        if(finalNum <= frase.length){
-            response = frase[finalNum]
-        } else {
-            response = 'el parametro esta mal'
-        }
-    } else {
-        response = 'hay algo mal'
-    }
-    res.json({"hola": response})
+app.get('/productos', function(req, res, next){
+    res.send(fileObject)
+})
+
+app.get('/productoRandom', function(req, res, next){
+    let num = Math.round(Math.random() * fileObject.length)
+    res.send(`El producto randomizado es: ${JSON.stringify(fileObject[num])}`)
 })
 
 app.listen(PORT, ()=>{
-    console.log(`Escuchando desde http:/localhost:${PORT}`)
+    console.log(`Escuchando desde http://localhost:${PORT}`)
 })
 
 
