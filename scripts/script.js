@@ -14,7 +14,7 @@ app.get('/productos', function(req, res, next){
 })
 
 app.get('/productoRandom', function(req, res, next){
-    let num = Math.round(Math.random() * fileObject.length)
+    let num = Math.round(Math.random() * (fileObject.length-1))
     res.send(`El producto randomizado es: ${JSON.stringify(fileObject[num])}`)
 })
 
