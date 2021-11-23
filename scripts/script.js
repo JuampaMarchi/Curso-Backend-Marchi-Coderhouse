@@ -1,21 +1,52 @@
 const fs = require('fs')
 const express = require('express')
 const app = express()
+let {Router} = express;
+let router = new Router;
 const PORT = 8080
-const file = fs.readFileSync('./productos.json', 'utf-8')
-let fileObject = JSON.parse(file)
+const products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
 
-app.get('/', function(req, res, next){
-    res.send('Hola Mundo')
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+
+router.get('/:id', (req, res, next)=>{
+    const reqId = req.params
+    if(reqId.id > 0 && reqId.id <= products.length){
+        const item = products.find(e => e.id == reqId.id)
+        res.json(item)
+    }
+    res.send(`El id: ${reqId.id} no existe en nuestra base de datos`)
 })
 
-app.get('/productos', function(req, res, next){
-    res.send(fileObject)
+router.post('/', (req, res, next)=>{
+    const newProd = req.body
+    newProd.id = products.length + 1
+    products.push(newProd)
+    fs.writeFileSync('./productos.json', JSON.stringify(products))
+    res.send(`Se cargo el producto ${newProd.name.toUpperCase()} con el id: ${newProd.id}`)
 })
 
-app.get('/productoRandom', function(req, res, next){
-    let num = Math.round(Math.random() * (fileObject.length-1))
-    res.send(`El producto randomizado es: ${JSON.stringify(fileObject[num])}`)
+router.put('/', (req, res, next)=>{
+    const {prod_id, new_price} = req.query
+    console.log('id', prod_id)
+    console.log('new_price', new_price)
+    if(prod_id > 0 && prod_id <= products.length){
+        const item = products.find(e => e.id == prod_id)
+        item.price = new_price
+        fs.writeFileSync('./productos.json', JSON.stringify(products))
+        res.send(`El producto ${item.name} fué actualizado. Nuevo precio: $${item.price}`)
+    }
+    res.send(`Error: el id '${prod_id}' no se corresponde a ningun producto`)
+})
+
+router.get('/', (req, res, next)=>{
+    res.json(products)
+})
+
+app.use('/productos', router)
+
+app.get('/', (req, res, next)=>{
+    res.send('Esta es la página principal')
 })
 
 app.listen(PORT, ()=>{
