@@ -1,13 +1,16 @@
 const fs = require('fs')
 const express = require('express')
 const app = express()
+const path = require('path')
 let {Router} = express;
 let router = new Router;
 const PORT = 8080
 const products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
 
 //Middlewares
-app.use(express.static("public/html"))
+const ruta = path.join(__dirname, "../public", "html")
+console.log(ruta)
+app.use("/archivos", express.static(ruta))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
@@ -73,10 +76,3 @@ app.get('/', (req, res, next)=>{
 app.listen(PORT, ()=>{
     console.log(`Escuchando desde http://localhost:${PORT}`)
 })
-
-
-
-
-
-
-
