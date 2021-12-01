@@ -1,7 +1,7 @@
 const fs = require('fs')
 const express = require('express')
 const app = express()
-//const path = require('path')
+const path = require('path')
 //const handlebars = require('express-handlebars')
 let {Router} = express;
 let router = new Router;
@@ -14,12 +14,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
 //app.engine('handlebars', handlebars.engine())
-app.set('views', './views/pug')
-app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, "views", "ejs"))
+app.set('view engine', 'ejs')
 
 
 router.get('/', (req, res, next)=>{
-    res.render('index.pug', {products})
+    res.render('index', {products})
 })
 
 app.post('/productos', (req, res, next)=>{
