@@ -9,8 +9,7 @@ const products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
 
 //Middlewares
 const ruta = path.join(__dirname, "../public", "html")
-console.log(ruta)
-app.use("/archivos", express.static(ruta))
+app.use("/", express.static(ruta))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
@@ -68,10 +67,6 @@ router.delete('/', (req, res, next)=>{
 })
 
 app.use('/productos', router)
-
-app.get('/', (req, res, next)=>{
-    res.send('Esta es la página principal')
-})
 
 app.listen(PORT, ()=>{
     console.log(`Escuchando desde http://localhost:${PORT}`)

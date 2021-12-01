@@ -8,6 +8,7 @@
     <title>Curso Backend</title>
 </head>
 <body>
+    
     <style>
         .prod-form {
             margin: 2rem 2rem 0rem 2rem;
@@ -22,7 +23,7 @@
             <form class="prod-form" id="add" action="../../productos" method="POST">
                 <div class="d-flex flex-column align-items-center">
                     <input type="text" name="name" class="form-control" placeholder="Nombre del Producto" style="margin-bottom: 10px;">
-                    <input type="text" name="price" class="form-control" placeholder="Precio del Producto" style="margin-bottom: 10px;">
+                    <input type="number" name="price" class="form-control" placeholder="Precio del Producto" style="margin-bottom: 10px;">
                     <button type="submit" class="btn btn-primary">Ingresar Producto</button>
                 </div>
             </form>
@@ -33,11 +34,38 @@
                 </div>
             </form>
         </div>
-        <form action="../../productos" method="GET">
-            <div class="d-flex flex-column align-items-center mt-lg-5">
-                <button type="submit" class="btn btn-dark">Ver todos los Productos</button>
-            </div>
-        </form>
+        <div class="d-flex flex-column align-items-center mt-lg-5">
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
