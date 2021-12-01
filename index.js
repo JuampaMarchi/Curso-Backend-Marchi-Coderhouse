@@ -19,11 +19,12 @@ app.set('view engine', 'pug')
 
 
 router.get('/', (req, res, next)=>{
-    res.render('index.pug', req.params)
+    res.render('index.pug', {products})
 })
 
-router.post('/productos', (req, res, next)=>{
+app.post('/productos', (req, res, next)=>{
     const newProd = req.body
+    console.log(req.body)
     newProd.id = products.length + 1
     products.push(newProd)
     fs.writeFileSync('./productos.json', JSON.stringify(products))
