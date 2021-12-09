@@ -1,4 +1,4 @@
-//const fs = require('fs')
+const fs = require('fs')
 const {Server: SocketIO} = require('socket.io')
 
 class Socket{
@@ -11,7 +11,7 @@ class Socket{
         this.io = new SocketIO(http)
         this.chatLog = []
         this.users = []
-        this.products = []
+        this.products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
     }
     init(){
         try {
@@ -40,23 +40,20 @@ class Socket{
             throw new Error(`Ocurrio el siguiente error: ${err}`)
         }
     }
-    // initProd(){
-    //     try {
-    //         this.io.on('connection', socket=>{
-    //             console.log('Conectado. Cargando productos...')
-    //             const prodList = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
-    //             this.products.push(prodList)
-    //             console.log(this.products)
-    //             socket.emit('sendProd', this.products)
-    //             socket.on('loadProd', data=>{
-    //                 this.products.push(data)
-    //                 this.io.sockets.emit('sendToAll', this.products)
-    //             })
-    //         })
-    //     } catch (err) {
-    //         throw new Error(`Ocurrio el siguiente error: ${err}`)
-    //     }
-    // }
+    initProd(){
+        try {
+            this.io.on('connection', socket=>{
+                socket.emit('sendProd', this.products)
+                socket.on('loadProd', data=>{
+                    this.products.push(data)
+                    console.log(this.products)
+                    this.io.sockets.emit('sendToAll', this.products)
+                })
+            })
+        } catch (err) {
+            throw new Error(`Ocurrio el siguiente error: ${err}`)
+        }
+    }
 }
 
 module.exports = Socket;

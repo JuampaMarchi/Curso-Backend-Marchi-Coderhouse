@@ -8,8 +8,6 @@ let {Router} = express;
 let router = new Router;
 const PORT = 8080
 
-//Array productos
-const products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
 
 //Middlewares
 app.use(express.json())
@@ -25,6 +23,8 @@ app.set('view engine', 'ejs')
 const httpServer = new HttpServer(app)
 const socket = new Socket(httpServer)
 socket.init()
+socket.initProd()
+const products = socket.products
 
 router.get('/', (req, res, next)=>{
     res.render('index', {products})
