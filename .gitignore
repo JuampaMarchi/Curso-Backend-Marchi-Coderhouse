@@ -1,5 +1,4 @@
 ./node_modules
 package-lock.json
 node_modules
-scripts/script express.js
-scripts/script manejo_archivos.js
+.env
