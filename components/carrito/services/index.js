@@ -16,6 +16,13 @@ export const bringCart = async ()=>{
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
     }
 }
+export const writeCart = async (cart)=>{
+    try {
+        await fs.promises.writeFile('./cart.json', cart)
+    } catch (error) {
+        throw new Error(`Tuvimos el siguiente problema: ${error}`)
+    }
+}
 export const newId = (list)=>{
     const newId = list.reduce((previous, actual) => Math.max(previous, actual.id) , 1)
     return newId + 1

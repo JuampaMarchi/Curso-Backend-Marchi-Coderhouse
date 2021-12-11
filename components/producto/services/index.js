@@ -22,7 +22,7 @@ export const list = async ()=>{
 }
 export const writeList = async (list)=>{
     try {
-        fs.promises.writeFile('./productos.json', list)
+        await fs.promises.writeFile('./productos.json', list)
     } catch (error) {
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
     }

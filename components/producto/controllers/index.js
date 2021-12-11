@@ -26,6 +26,7 @@ router.post('/', async (req, res, next)=>{
     prodList.push(item)
     const newList = JSON.stringify(prodList)
     writeList(newList)
+    res.send(`El producto fue exitosamente cargado`)
     return itemId
 })
 router.put('/:id', async (req, res, next)=>{
@@ -52,6 +53,7 @@ router.delete('/:id', async (req, res, body)=>{
     prodList.splice(prodList.indexOf(item, 1))
     const newList = JSON.stringify(prodList)
     writeList(newList)
+    res.send(`El producto con id ${id} fue borrado`)
 })
 
 export { router }
