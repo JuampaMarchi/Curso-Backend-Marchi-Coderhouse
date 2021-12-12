@@ -1,5 +1,6 @@
 import moment from "moment";
 import { Router } from "express";
+import { userAuth } from "../../../middlewares/auth.js";
 import { list, Product, newId, writeList, updateProd } from "../services/index.js";
 
 const router = new Router()
@@ -17,7 +18,7 @@ router.get('/:id', async (req, res, next)=>{
     }
     res.json(filter)
 })
-router.post('/', async (req, res, next)=>{
+router.post('/', userAuth, async (req, res, next)=>{
     const prodList = await list()
     const data = req.body
     const itemId = newId(prodList)
@@ -29,7 +30,7 @@ router.post('/', async (req, res, next)=>{
     res.send(`El producto fue exitosamente cargado`)
     return itemId
 })
-router.put('/:id', async (req, res, next)=>{
+router.put('/:id', userAuth, async (req, res, next)=>{
     const prodList = await list()
     const {id} = req.params
     const item = prodList.find(e => e.id == id)
@@ -43,14 +44,14 @@ router.put('/:id', async (req, res, next)=>{
     writeList(newList)
     res.send(`Producto con id ${id} actualizado el: ${item.timestamp}`)
 })
-router.delete('/:id', async (req, res, body)=>{
+router.delete('/:id', userAuth, async (req, res, body)=>{
     const prodList = await list()
     const {id} = req.params
     const item = prodList.find(e => e.id == id)
     if(!item){
         return res.status(404).send()
     }
-    prodList.splice(prodList.indexOf(item, 1))
+    prodList.splice(prodList.indexOf(item),1)
     const newList = JSON.stringify(prodList)
     writeList(newList)
     res.send(`El producto con id ${id} fue borrado`)
