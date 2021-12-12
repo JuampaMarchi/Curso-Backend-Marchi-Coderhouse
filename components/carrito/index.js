@@ -1,5 +1,8 @@
-import { router } from "../carrito/controllers/index.js"
+import { router as RouterCarrito } from "../carrito/controllers/index.js"
+import { Router } from "express"
 
-export const apiCarrito = app => {
-    app.use('/api/carrito', router)
-}
+const router = new Router()
+
+router.use('/carrito', RouterCarrito)
+
+export {router}

@@ -1,5 +1,8 @@
-import { router } from "./controllers/index.js"
+import { router as RouterProductos } from "./controllers/index.js"
+import { Router } from "express"
 
-export const apiProductos = app => {
-    app.use('/api/productos', router)
-}
+const router = new Router()
+
+router.use('/productos', RouterProductos)
+
+export {router}
