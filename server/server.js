@@ -17,8 +17,7 @@ export class Server {
         this.messagePath = '/api/message',
         this.middlewares(),
         this.routes(),
-        this.viewEngine(),
-        this.webSocket()
+        this.viewEngine()
     }
     middlewares(){
         this.app.use(cors(db.cors))

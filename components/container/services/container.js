@@ -9,9 +9,6 @@ export class ProductContainer {
         ProductContainer.client = mysql
         this.client = ProductContainer.client
     }
-    async create(){
-        
-    }
 }
 
 export class MessageContainer {
