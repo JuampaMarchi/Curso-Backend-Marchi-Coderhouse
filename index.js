@@ -1,15 +1,15 @@
 import fs from 'fs'
 import express from 'express'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { Socket } from './utils/socket/index.js'
 import { Server as HttpServer } from 'http'
 import { Router } from 'express'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { dbConfig } from './config/index.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const router = new Router;
 const app = express()
-const PORT = 8080
-
+const PORT = dbConfig.port
 
 //Middlewares
 app.use(express.json())
