@@ -7,8 +7,7 @@ import { Server as HttpServer } from 'http'
 import { dbConfig, db } from '../config/index.js'
 import { prodRouter } from '../routes/products.js'
 import { messageRouter } from '../routes/messages.js'
-
-//path.join(__dirname, "../views", "ejs"))
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
     constructor(){
@@ -17,7 +16,8 @@ export class Server {
         this.prodPath = '/api/products',
         this.messagePath = '/api/message',
         this.middlewares(),
-        this.routes()
+        this.routes(),
+        this.viewEngine(),
         this.webSocket()
     }
     middlewares(){
@@ -29,16 +29,17 @@ export class Server {
         this.app.use(this.prodPath, prodRouter)
         this.app.use(this.messagePath, messageRouter)
     }
+    viewEngine(){
+        this.app.set('views', path.join(__dirname, "../views", "ejs"))
+        this.app.set('view engine', 'ejs')
+    }
     webSocket(){
-        const httpServer = new HttpServer(app)
+        const httpServer = new HttpServer(this.app)
         const socket = new Socket(httpServer)
         socket.init()
         socket.initProd()
         httpServer.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)
         })
-    }
-    listen(){
-        
     }
 }
