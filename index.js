@@ -1,11 +1,13 @@
-const fs = require('fs')
-const express = require('express')
+import fs from 'fs'
+import express from 'express'
+import { Socket } from './utils/socket/index.js'
+import { Server as HttpServer } from 'http'
+import { Router } from 'express'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const router = new Router;
 const app = express()
-const Socket = require('./utils/socket')
-const {Server: HttpServer} = require('http')
-const path = require('path')
-let {Router} = express;
-let router = new Router;
 const PORT = 8080
 
 
@@ -22,9 +24,9 @@ app.set('view engine', 'ejs')
 
 const httpServer = new HttpServer(app)
 const socket = new Socket(httpServer)
+const products = socket.products
 socket.init()
 socket.initProd()
-const products = socket.products
 
 router.get('/', (req, res, next)=>{
     res.render('index', {products})
@@ -37,28 +39,6 @@ router.post('/productos', (req, res, next)=>{
     products.push(newProd)
     fs.writeFileSync('./productos.json', JSON.stringify(products))
     res.redirect('/')
-})
-
-router.put('/', (req, res, next)=>{
-    const {prod_id, new_price} = req.query
-    if(prod_id > 0 && prod_id <= products.length){
-        const item = products.find(e => e.id == prod_id)
-        item.price = new_price
-        fs.writeFileSync('./productos.json', JSON.stringify(products))
-        return res.send(`El producto ${item.name} fué actualizado. Nuevo precio: $${item.price}`)
-    }
-    return res.send(`Error: el id '${prod_id}' no se corresponde a ningun producto`)
-})
-
-router.delete('/', (req, res, next)=>{
-    const reqProd = req.query
-    if(reqProd.id > 0 && reqProd.id <= products.length){
-        const item = products.find(e => e.id == prod_id)
-        products.splice(products.indexOf(item),1)
-        fs.writeFileSync('./productos.json', JSON.stringify(products))
-        return res.send(`El producto con id ${reqProd.id} fue exitosamente eliminado`)
-    }
-    return res.send(`Error al eliminar producto: el id '${reqProd.id}' no se corresponde a ningun producto`)
 })
 
 httpServer.listen(PORT, ()=>{

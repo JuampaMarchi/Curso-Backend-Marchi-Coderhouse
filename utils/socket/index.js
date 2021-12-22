@@ -1,7 +1,7 @@
-const fs = require('fs')
-const {Server: SocketIO} = require('socket.io')
+import fs from 'fs'
+import {Server as SocketIO} from 'socket.io'
 
-class Socket{
+export class Socket{
     static instance
     constructor(http){
         if(Socket.instance){
@@ -55,5 +55,3 @@ class Socket{
         }
     }
 }
-
-module.exports = Socket;
