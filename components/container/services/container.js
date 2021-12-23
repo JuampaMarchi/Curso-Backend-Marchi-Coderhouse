@@ -1,4 +1,4 @@
-import { sqlite, mysql } from "../../../config/db";
+import { sqlite, mysql } from "../../../config/db.js";
 
 export class ProductContainer {
     static client

@@ -7,12 +7,14 @@ import { Server as HttpServer } from 'http'
 import { dbConfig, db } from '../config/index.js'
 import { prodRouter } from '../routes/products.js'
 import { messageRouter } from '../routes/messages.js'
+import { mainRouter } from '../routes/main.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
     constructor(){
         this.app = express(),
         this.port = dbConfig.port
+        this.mainPath = '/'
         this.prodPath = '/api/products',
         this.messagePath = '/api/message',
         this.middlewares(),
@@ -25,6 +27,7 @@ export class Server {
         this.app.use(express.urlencoded({extended: true}))
     }
     routes(){
+        this.app.use(this.mainPath, mainRouter)
         this.app.use(this.prodPath, prodRouter)
         this.app.use(this.messagePath, messageRouter)
     }
