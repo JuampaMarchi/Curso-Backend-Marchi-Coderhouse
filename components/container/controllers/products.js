@@ -25,12 +25,14 @@ export const insertProduct = async (data) => {
 
 export const listProducts = async () => {
     try {
+        let response = []
         await db.from('products')
             .then((rows)=>{
                 for (const row of rows) {
-                    console.log(`Id: ${row['id']} - Nombre: ${row['name']} - Precio: ${row['price']}`)
+                    response.push({id: row['id'], name: row['name'], price: row['price']})
                 }
             })
+            return response
     } catch (error) {
         console.log(error)
     }

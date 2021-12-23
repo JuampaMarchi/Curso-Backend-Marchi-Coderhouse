@@ -12,7 +12,7 @@ export const mysql = knex({
 export const sqlite = knex({
     client: 'sqlite3',
     connection: {
-        filename: '../db/clasedatabase.sqlite'
+        filename: '/Users/juampa/Desktop/Curso Backend-Marchi-Coderhouse/db/clasecoder.sqlite'
     },
     useNullAsDefault: true
 })
