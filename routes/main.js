@@ -1,6 +1,4 @@
 import { Router } from "express";
-const products = {}
-
 
 export const mainRouter = new Router()
 

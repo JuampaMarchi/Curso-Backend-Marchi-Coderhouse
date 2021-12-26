@@ -51,10 +51,6 @@
         `)
     }
     let socket = io()
-    socket.on('sendProd', data=>{
-        console.log(data)
-        products = data
-    })
     prodForm.addEventListener('submit', e=>{
         const newProd = {
             name: e.target[0].value,

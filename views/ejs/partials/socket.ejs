@@ -1,5 +1,5 @@
 <script>
-    let student = null
+    let user = null
     let user_data_form = document.getElementById('user_data')
     let chat_container = document.getElementById('chat_container')
     let chat_box = document.getElementById('text-container')
@@ -7,20 +7,20 @@
     let text_input = document.getElementById('input-text')
     user_data_form.addEventListener('submit', e=>{
         e.preventDefault()
-        student = {
+        user = {
             name: e.target[0].value,
             email: e.target[1].value
         }
-        if(student.name == '' || student.email == ''){
+        if(user.name == '' || user.email == ''){
             window.location.reload()
         }
-        socket.emit('addUser', student);
+        socket.emit('addUser', user);
         chat_container.classList.add('active')
         readSockets()
     })
     send_button.addEventListener('click', e=>{
         let sentMessage = {
-            ...student,
+            ...user,
             message: text_input.value
         }
         socket.emit('message', sentMessage)

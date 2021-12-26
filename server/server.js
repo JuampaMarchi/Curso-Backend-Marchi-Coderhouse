@@ -17,6 +17,7 @@ export class Server {
         this.mainPath = '/'
         this.prodPath = '/api/products',
         this.messagePath = '/api/message',
+        this.products = []
         this.middlewares(),
         this.routes(),
         this.viewEngine()
@@ -38,6 +39,7 @@ export class Server {
     webSocket(){
         const httpServer = new HttpServer(this.app)
         const socket = new Socket(httpServer)
+        this.products = socket.products
         socket.init()
         socket.initProd()
         httpServer.listen(this.port, ()=>{

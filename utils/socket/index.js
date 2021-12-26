@@ -1,5 +1,6 @@
 import fs from 'fs'
 import {Server as SocketIO} from 'socket.io'
+import { insertProduct } from '../../components/container/controllers/products.js'
 
 export class Socket{
     static instance
@@ -11,7 +12,6 @@ export class Socket{
         this.io = new SocketIO(http)
         this.chatLog = []
         this.users = []
-        this.products = JSON.parse(fs.readFileSync('./productos.json', 'utf-8'))
     }
     init(){
         try {
@@ -43,7 +43,6 @@ export class Socket{
     initProd(){
         try {
             this.io.on('connection', socket=>{
-                socket.emit('sendProd', this.products)
                 socket.on('loadProd', data=>{
                     this.products.push(data)
                     console.log(this.products)
