@@ -1,14 +1,13 @@
 import { Server } from './server/server.js'
-import { insertMessage, bringMessages, createTable } from './components/container/controllers/messages.js';
-import { bringProdByName } from './components/container/controllers/products.js';
+import { clearChat } from './components/container/controllers/messages.js';
+import moment from 'moment';
+const stamp = moment().format('DD/MM/YYYY HH:mm:ss')
 
 const server = new Server();
 
 server.webSocket()
 
-//insertMessage({user_name: 'juan', message: 'hola'})
-//bringMessages()
-// const a = await bringProdByName('producto 1')
-// console.log(a)
+clearChat()
+
 
 

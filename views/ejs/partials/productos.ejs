@@ -58,7 +58,6 @@
     let socket = io()
     socket.on('sendProd', data=>{
         products = data
-        console.log(products)
     })
     socket.on('sendToAll', data => {
         console.log('data recibida')

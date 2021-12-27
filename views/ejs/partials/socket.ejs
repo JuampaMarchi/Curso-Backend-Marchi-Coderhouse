@@ -5,6 +5,7 @@
     let chat_box = document.getElementById('text-container')
     let send_button = document.getElementById('send-socket')
     let text_input = document.getElementById('input-text')
+    loadChat()
     user_data_form.addEventListener('submit', e=>{
         e.preventDefault()
         user = {
@@ -27,22 +28,20 @@
         text_input.value = ''
     })
     function loadChat(){
-
         socket.on('init', data=>{
             let inner = ``
             data.forEach(element=>{
-                inner += `<b>${element.name}: <i>${element.message}</i></b><br>`
+                inner += `<b>${element.user_name}: <i>${element.message}</i></b><br>`
             })
             chat_box.innerHTML = inner
         })
     }
     function readSockets(){
-        loadChat()
         socket.on('emitToAll', data=>{
             console.log('mensaje recibido')
             let inner = ``
             data.forEach(element=>{
-                inner += `<b>${element.name}: <i>${element.message}</i></b><br>`
+                inner += `<b>${element.user_name}: <i>${element.message}</i></b><br>`
             })
             chat_box.innerHTML = inner
         })

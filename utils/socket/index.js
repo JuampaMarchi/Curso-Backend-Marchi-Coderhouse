@@ -1,6 +1,9 @@
 import {Server as SocketIO} from 'socket.io'
 import { listProducts, insertProduct, bringProdByName } from '../../components/container/controllers/products.js'
+import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
+import moment from 'moment'
 const prodList = await listProducts()
+const chatLog = await bringMessages()
 
 export class Socket{
     static instance
@@ -10,7 +13,7 @@ export class Socket{
         }
         Socket.instance = this
         this.io = new SocketIO(http)
-        this.chatLog = []
+        this.chatLog = chatLog
         this.users = []
         this.products = prodList
     }
@@ -19,8 +22,11 @@ export class Socket{
             this.io.on('connection', socket=>{
                 console.log('Usuario contectado!')
                 socket.emit('init', this.chatLog)
-                socket.on('message', data=>{
-                    this.chatLog.push(data)
+                socket.on('message', async data=>{
+                    const stamp = moment().format('DD/MM/YYYY HH:mm:ss')
+                    insertMessage({user_name: data.name, message: data.message, sent_at: stamp})
+                    const newMessage = await bringMessagesByStamp(stamp)
+                    this.chatLog.push(newMessage)
                     this.io.sockets.emit('emitToAll', this.chatLog)
                 })
                 socket.on('addUser', data=>{

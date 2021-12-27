@@ -24,15 +24,26 @@ export const insertMessage = async (data) => {
 }
 export const bringMessages = async () => {
     try {
-        let response = []
-        await db.from('messages')
-            .then((rows)=>{
-                for (const row of rows) {
-                    response.push({id: row['id'], user: row['user_name'], message: row['message'], sent_at: row['sent_at']})
-                }
-            })
-            console.log(response)
-            return response
+        const res = await db.from('messages')
+            console.log(res)
+            return res
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const bringMessagesByStamp = async (stamp) => {
+    try {
+        const res = await db.from('messages').where('sent_at', '=', `${stamp}`)
+        const item = res[0]
+        return item
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const clearChat = async () => {
+    try {
+        await db.from('messages').del()
+        console.log('Mensajes eliminados')
     } catch (error) {
         console.log(error)
     }
