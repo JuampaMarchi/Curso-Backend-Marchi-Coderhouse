@@ -1,4 +1,5 @@
 import { mysql } from "../index.js";
+import moment from "moment";
 
 const db = mysql.client
 
@@ -8,6 +9,7 @@ export const createTable = async () => {
             table.increments('id')
             table.string('name')
             table.integer('price')
+            table.timestamp('created_at').notNullable()
         }).then(console.log('Tabla creada con exito'))
     } catch (error) {
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
@@ -18,21 +20,27 @@ export const insertProduct = async (data) => {
     try {
         await db('products').insert(data)
         console.log('Productos ingresados con exito')
-        const res = await db.from('products')
-        console.log(res)
-        return res
     } catch (error) {
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
     }
 }
 
+export const bringProdByName = async (name) => {
+    const prod = await db('products').where('name', '=', `${name}`)
+    const item = prod[0]
+    return item
+}
+
+// export const bringLastProd = async () => {
+//     const newProd = db.raw(`SELECT id, name, price, MAX('created_at') FROM products`)
+//     //await db.from('products').where('created_at', '=' , db.raw(`(SELECT MAX('created_at') FROM products)`))
+//     console.log(newProd)
+//     return newProd
+// }
+
 export const listProducts = async () => {
     try {
-        //let response = []
         const res = await db.from('products')
-        // for (const row of res) {
-        //     response.push({id: row['id'], name: row['name'], price: row['price']})
-        // }
         return res
     } catch (error) {
         console.log(error)

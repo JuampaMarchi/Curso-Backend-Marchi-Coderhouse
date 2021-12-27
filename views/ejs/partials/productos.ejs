@@ -42,22 +42,35 @@
     let prodForm = document.getElementById('prod-form')
     const appendItem = (itemId, itemName, itemPrice)=>{
         const body = document.getElementById('table-body')
-        body.append(`
-            <tr>
-                <th scope="row">${itemId}</th>
-                <td>${itemName}</td>
-                <td>${itemPrice}</td>
-            </tr>
-        `)
+        const tr = document.createElement('tr')
+        const th = document.createElement('th')
+        const nameTd = document.createElement('td')
+        const priceTd = document.createElement('td')
+        th.setAttribute('scope', 'row')
+        th.innerHTML = itemId
+        nameTd.innerHTML = itemName
+        priceTd.innerHTML = itemPrice
+        tr.appendChild(th)
+        tr.appendChild(nameTd)
+        tr.appendChild(priceTd)
+        body.appendChild(tr)
     }
     let socket = io()
+    socket.on('sendProd', data=>{
+        products = data
+        console.log(products)
+    })
+    socket.on('sendToAll', data => {
+        console.log('data recibida')
+        console.log(data)
+        appendItem(data.id, data.name, data.price)
+    })
     prodForm.addEventListener('submit', e=>{
+        e.preventDefault()
         const newProd = {
             name: e.target[0].value,
-            price: parseInt(e.target[1].value),
-            id: products.length + 1
+            price: parseInt(e.target[1].value)
         }
-        appendItem(newProd.id, newProd.name, newProd.price)
         socket.emit('loadProd', newProd)
     })
 </script>

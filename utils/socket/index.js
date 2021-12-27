@@ -1,6 +1,6 @@
-import fs from 'fs'
 import {Server as SocketIO} from 'socket.io'
-import { insertProduct } from '../../components/container/controllers/products.js'
+import { listProducts, insertProduct, bringProdByName } from '../../components/container/controllers/products.js'
+const prodList = await listProducts()
 
 export class Socket{
     static instance
@@ -12,6 +12,7 @@ export class Socket{
         this.io = new SocketIO(http)
         this.chatLog = []
         this.users = []
+        this.products = prodList
     }
     init(){
         try {
@@ -43,10 +44,12 @@ export class Socket{
     initProd(){
         try {
             this.io.on('connection', socket=>{
-                socket.on('loadProd', data=>{
-                    this.products.push(data)
-                    console.log(this.products)
-                    this.io.sockets.emit('sendToAll', this.products)
+                socket.emit('sendProd', this.products)
+                socket.on('loadProd', async data=>{
+                    insertProduct(data)
+                    const newProd = await bringProdByName(data.name)
+                    this.products.push(newProd)
+                    this.io.sockets.emit('sendToAll', newProd)
                 })
             })
         } catch (err) {
