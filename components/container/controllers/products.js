@@ -1,6 +1,4 @@
 import { mysql } from "../index.js";
-import moment from "moment";
-
 const db = mysql.client
 
 export const createTable = async () => {
@@ -31,12 +29,13 @@ export const bringProdByName = async (name) => {
     return item
 }
 
-// export const bringLastProd = async () => {
-//     const newProd = db.raw(`SELECT id, name, price, MAX('created_at') FROM products`)
-//     //await db.from('products').where('created_at', '=' , db.raw(`(SELECT MAX('created_at') FROM products)`))
-//     console.log(newProd)
-//     return newProd
-// }
+export const bringLastProd = async () => {
+    const lastProd = await db.from('products').whereRaw("SELECT MAX('created_at') FROM products")
+    //const newProd = db.raw(`SELECT id, name, price, MAX('created_at') FROM products`)
+    //await db.from('products').where('created_at', '=' , db.raw(`(SELECT MAX('created_at') FROM products)`))
+    console.log('lastProd', lastProd)
+    return lastProd
+}
 
 export const listProducts = async () => {
     try {
