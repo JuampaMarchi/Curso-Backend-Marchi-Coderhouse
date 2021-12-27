@@ -1,8 +1,14 @@
 import { Server } from './server/server.js'
-import { insertProduct } from './components/container/controllers/products.js';
+import { insertMessage, bringMessages, createTable } from './components/container/controllers/messages.js';
+import { bringProdByName } from './components/container/controllers/products.js';
 
 const server = new Server();
 
 server.webSocket()
 
-insertProduct({name: 'producto 9', price: 90})
+//insertMessage({user_name: 'juan', message: 'hola'})
+//bringMessages()
+// const a = await bringProdByName('producto 1')
+// console.log(a)
+
+

@@ -8,7 +8,7 @@ export const createTable = async () => {
             table.increments('id').primary(),
             table.string('user_name'),
             table.string('message'),
-            table.date('sent_at')
+            table.timestamp('sent_at')
         }).then(console.log('Tabla creada con exito'))
     } catch (error) {
         console.log(`Tuvimos el siguiente problema: ${error}`)
@@ -17,7 +17,7 @@ export const createTable = async () => {
 export const insertMessage = async (data) => {
     try {
         await db('messages').insert(data)
-            .then(console.log('Productos ingresados con exito'))
+        console.log('Mensaje ingresado con exito')
     } catch (error) {
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
     }
@@ -31,6 +31,7 @@ export const bringMessages = async () => {
                     response.push({id: row['id'], user: row['user_name'], message: row['message'], sent_at: row['sent_at']})
                 }
             })
+            console.log(response)
             return response
     } catch (error) {
         console.log(error)
