@@ -29,12 +29,16 @@ export const bringProdByName = async (name) => {
     return item
 }
 
+export const bringProdById = async (id) => {
+    const prod = await db('products').where('id', '=', `${id}`)
+    const item = prod[0]
+    return item
+}
+
 export const bringLastProd = async () => {
-    const lastProd = await db.from('products').whereRaw("SELECT MAX('created_at') FROM products")
-    //const newProd = db.raw(`SELECT id, name, price, MAX('created_at') FROM products`)
-    //await db.from('products').where('created_at', '=' , db.raw(`(SELECT MAX('created_at') FROM products)`))
-    console.log('lastProd', lastProd)
-    return lastProd
+    const lastProd = await db.from('products').orderBy('created_at', 'desc').limit(1)
+    const item = lastProd[0]
+    return item
 }
 
 export const listProducts = async () => {

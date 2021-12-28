@@ -1,5 +1,5 @@
 import {Server as SocketIO} from 'socket.io'
-import { listProducts, insertProduct, bringProdByName } from '../../components/container/controllers/products.js'
+import { listProducts, insertProduct, bringLastProd } from '../../components/container/controllers/products.js'
 import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
 import moment from 'moment'
 const prodList = await listProducts()
@@ -53,7 +53,7 @@ export class Socket{
                 socket.emit('sendProd', this.products)
                 socket.on('loadProd', async data=>{
                     insertProduct(data)
-                    const newProd = await bringProdByName(data.name)
+                    const newProd = await bringLastProd()
                     this.products.push(newProd)
                     this.io.sockets.emit('sendToAll', newProd)
                 })
