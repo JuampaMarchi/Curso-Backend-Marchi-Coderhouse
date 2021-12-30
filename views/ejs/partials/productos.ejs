@@ -61,7 +61,6 @@
     })
     socket.on('sendToAll', data => {
         console.log('data recibida')
-        console.log(data)
         appendItem(data.id, data.name, data.price)
     })
     prodForm.addEventListener('submit', e=>{

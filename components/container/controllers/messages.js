@@ -25,7 +25,6 @@ export const insertMessage = async (data) => {
 export const bringMessages = async () => {
     try {
         const res = await db.from('messages')
-            console.log(res)
             return res
     } catch (error) {
         console.log(error)
