@@ -8,6 +8,7 @@ import { dbConfig, db } from '../config/index.js'
 import { prodRouter } from '../routes/products.js'
 import { messageRouter } from '../routes/messages.js'
 import { mainRouter } from '../routes/main.js'
+import { cartRouter } from '../routes/cart.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
@@ -17,6 +18,7 @@ export class Server {
         this.mainPath = '/'
         this.prodPath = '/api/products',
         this.messagePath = '/api/message',
+        this.cartPath = '/api/cart'
         this.middlewares(),
         this.routes(),
         this.viewEngine()
@@ -30,6 +32,7 @@ export class Server {
         this.app.use(this.mainPath, mainRouter)
         this.app.use(this.prodPath, prodRouter)
         this.app.use(this.messagePath, messageRouter)
+        this.app.use(this.cartPath, cartRouter)
     }
     viewEngine(){
         this.app.set('views', path.join(__dirname, "../views", "ejs"))
