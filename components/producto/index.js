@@ -1,8 +1,7 @@
-import { router as RouterProductos } from "./controllers/index.js"
-import { Router } from "express"
+import { ProductSqlite } from "./services/productsSqlite.js";
+import { ProductMariaDB } from "./services/productsMariaDB.js";
 
-const router = new Router()
+export const productsSqlite = new ProductSqlite()
 
-router.use('/productos', RouterProductos)
+export const productsMariaDB = new ProductMariaDB()
 
-export {router}

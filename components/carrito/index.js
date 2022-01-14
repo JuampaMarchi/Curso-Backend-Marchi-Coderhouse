@@ -1,8 +1,6 @@
-import { router as RouterCarrito } from "../carrito/controllers/index.js"
-import { Router } from "express"
+import { CarritoSqlite } from "./services/carritoSqlite.js";
+import { CarritoMariaDB } from "./services/carritoMariaDB.js";
 
-const router = new Router()
+export const cartSqlite = new CarritoSqlite()
 
-router.use('/carrito', RouterCarrito)
-
-export {router}
+export const cartMariaDB = new CarritoMariaDB()

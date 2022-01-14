@@ -1,18 +1,5 @@
-import express from "express";
-import { config } from "dotenv";
-import { serverRouter } from "./routes/index.js";
+import { Server } from "./server/server.js";
 
-const app = express()
-const PORT = 8080
-config()
+const server = new Server()
 
-//Middlewares
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-
-//Routes
-serverRouter(app)
-
-app.listen(PORT, ()=>{
-    console.log(`Escuchando desde http://localhost:${process.env.PORT}`)
-}) 
+server.listen()
