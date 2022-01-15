@@ -1,4 +1,5 @@
 import knex from "knex";
+import mongoose from "mongoose";
 import { db } from "./index";
 
 export const mysql = knex({
@@ -16,3 +17,16 @@ export const sqlite = knex({
     },
     useNullAsDefault: true
 })
+
+export const CRUD = async () => {
+    try {
+        const URL = db.mongo
+        let rta = await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        console.log('Conectado a MongoDB')
+    } catch (error) {
+        console.log(error)
+    }
+}
