@@ -1,3 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model} from "mongoose";
+import { cartSchema } from "./schemas/cart.js";
 
-const cartCollection = 'cart'
+const cartSchemaModel = new Schema(cartSchema)
+export const CartModel = new model(cartSchemaModel)
+

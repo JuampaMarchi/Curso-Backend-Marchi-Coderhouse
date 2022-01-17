@@ -1,9 +1,9 @@
 import knex from "knex";
 import mongoose from "mongoose";
-import { db } from "./index";
+import { db } from "./index.js";
 
 export const mysql = knex({
-    client: mysql,
+    client: 'mysql',
     connection: {
         ...db
     },
@@ -18,10 +18,12 @@ export const sqlite = knex({
     useNullAsDefault: true
 })
 
+export let connection;
+
 export const CRUD = async () => {
     try {
-        const URL = db.mongo
-        let rta = await mongoose.connect(URL, {
+        const URL = db.mongo_host
+        connection = await mongoose.connect(URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })

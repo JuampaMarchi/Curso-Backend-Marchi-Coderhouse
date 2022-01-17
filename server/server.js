@@ -1,17 +1,15 @@
-import express, { urlencoded } from 'express'
+import express from 'express'
 import cors from 'cors'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import {Server as HttpServer} from 'http'
 import { mainRouter } from '../routes/index.js'
 import { productRouter } from '../routes/products.js'
 import { cartRouter } from '../routes/cart.js'
 import { dbConfig, db } from '../config/index.js'
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
     constructor(){
         this.app = express();
-        this.port = dbConfig.port || 8080;
+        this.port = 3000;
         this.mainPath = '/';
         this.cartPath = '/api/cart';
         this.prodPath = '/api/products';
@@ -20,7 +18,7 @@ export class Server {
     }
     middlewares(){
         this.app.use(cors(db.cors))
-        this.app.use(express.json)
+        this.app.use(express.json())
         this.app.use(express.urlencoded({extended: true}))
     }
     routes(){
@@ -29,7 +27,8 @@ export class Server {
         this.app.use(this.prodPath, productRouter)
     }
     listen(){
-        this.app.listen(this.port, () => {
+        const httpServer = new HttpServer(this.app)
+        httpServer.listen(this.port, () => {
             console.log(`Server running on http://localhost:${this.port}`)
         })
     }

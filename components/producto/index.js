@@ -1,7 +1,5 @@
 import { ProductSqlite } from "./services/productsSqlite.js";
-import { ProductMariaDB } from "./services/productsMariaDB.js";
+import { productosMongo } from "./services/productosMongo.js";
+import { productsMysql } from "./services/productsMariaDB.js"
 
-export const productsSqlite = new ProductSqlite()
-
-export const productsMariaDB = new ProductMariaDB()
-
+//export const productsSqlite = new ProductSqlite()
