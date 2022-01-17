@@ -1,7 +1,5 @@
 import { sqlite } from "../../config/db.js"
 
-const db = sqlite.client
-
 export class SqliteDAO {
     static client
     constructor(table){
@@ -14,33 +12,33 @@ export class SqliteDAO {
     }
     async read(){
         try {
-            const response = await db.from(this.table)
+            const response = await sqlite.client.from(this.table)
             return response
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async insert(data){
         try {
-            await db(this.table).insert(data)
+            await sqlite.client(this.table).insert(data)
             console.log('Producto insertado con exito')
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async update(id, data){
         try {
-            await db(this.table).where({id: id}).update(data)
+            await sqlite.client(this.table).where({id: id}).update(data)
             console.log('Producto actualizado con exito')
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async delete(id){
         try {
-            await db(this.table).where({id: id}).del()
+            await sqlite.client(this.table).where({id: id}).del()
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
 }

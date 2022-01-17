@@ -1,7 +1,5 @@
 import { mysql } from "../../config/db.js"
 
-const db = mysql.client
-
 export class MysqlDAO {
     static client
     constructor(table){
@@ -14,33 +12,33 @@ export class MysqlDAO {
     }
     async read(){
         try {
-            const response = await db.from(this.table)
+            const response = await this.client.from(this.table)
             return response
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async insert(data){
         try {
-            await db(this.table).insert(data)
+            await this.client(this.table).insert(data)
             console.log('Producto insertado con exito')
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async update(id, data){
         try {
-            await db(this.table).where({id: id}).update(data)
+            await this.client(this.table).where({id: id}).update(data)
             console.log('Producto actualizado con exito')
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
     async delete(id){
         try {
-            await db(this.table).where({id: id}).del()
+            await this.client(this.table).where({id: id}).del()
         } catch (error) {
-            console.log(error)
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
 }
