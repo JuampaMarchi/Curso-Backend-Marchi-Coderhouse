@@ -1,39 +1,39 @@
-import { cartMysql } from "../services/carritoMariaDB.js";
+import { CartDatabase } from "../../../DAOs/index.js"
 
-export const mysqlRead = async (req, res) => {
+export const getCarts = async (req, res) => {
     try {
-        const list = await cartMysql.read()
+        const list = await CartDatabase.read()
         res.json(list)
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
         res.status(500)
     }
 }
-export const mysqlInsert = async (req, res) => {
+export const insertCart = async (req, res) => {
     try {
-        const data = req.body
-        await cartMysql.insert(data)
+        const { data } = req.body
+        await CartDatabase.insertOne(data)
         res.send('El producto fue insertado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
         res.status(500)
     }
 }
-export const mysqlUpdate = async (req, res) => {
+export const updateCart = async (req, res) => {
     try {
-        const id = req.params
-        const data = req.body
-        await cartMysql.update(id, data)
+        const { id } = req.params
+        const { data } = req.body
+        await CartDatabase.update(id, data)
         res.send('El producto fue actualizado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
         res.status(500)
     }
 }
-export const mysqlDelete = async (req, res) => {
+export const deleteCart = async (req, res) => {
     try {
-        const id = req.params
-        await cartMysql.delete(id)
+        const { id } = req.params
+        await CartDatabase.delete(id)
         res.send('El producto fue eliminado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)

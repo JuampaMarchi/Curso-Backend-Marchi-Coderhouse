@@ -18,7 +18,7 @@ export class MysqlDAO {
             console.log(`Tuvimos este error: ${error}`)
         }
     }
-    async insert(data){
+    async insertOne(data){
         try {
             await this.client(this.table).insert(data)
             console.log('Producto insertado con exito')
@@ -34,7 +34,7 @@ export class MysqlDAO {
             console.log(`Tuvimos este error: ${error}`)
         }
     }
-    async delete(id){
+    async remove(id){
         try {
             await this.client(this.table).where({id: id}).del()
         } catch (error) {

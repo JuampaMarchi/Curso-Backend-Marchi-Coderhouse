@@ -26,9 +26,8 @@ export class FirebaseDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insertOne(item_id, data) {
+    async insertOne( data ) {
         try {
-            let id = item_id
             let doc = this.query.doc(`${id}`)
             await doc.create(data)
             console.log('Producto insertado con exito')
@@ -36,9 +35,8 @@ export class FirebaseDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insertMany(item_id, data) {
+    async insertMany( data ) {
         try {
-            let id = item_id
             let doc = this.query.doc(`${id}`)
             for (const item of data) {
                 doc.create(item)
@@ -58,7 +56,7 @@ export class FirebaseDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async delete(item_id) {
+    async remove(item_id) {
         try {
             const doc = this.query.doc(`${item_id}`)
             await doc.delete()

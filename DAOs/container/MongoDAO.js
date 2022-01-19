@@ -11,7 +11,7 @@ export class MongoDAO {
         this.client = MongoDAO.client
         this.collection = collection
     }
-    async list() {
+    async read() {
         try {
             const result = await this.collection.find({})
             return result
@@ -19,7 +19,7 @@ export class MongoDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insert(data){
+    async insertOne(data){
         try {
             await this.collection.insertOne(data)
             console.log('Item insertado')
