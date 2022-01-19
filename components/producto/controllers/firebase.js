@@ -9,7 +9,6 @@ export const getAllProducts = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const insertOneProduct = async (req, res) => {
     try {
         const item = req.body
@@ -20,7 +19,6 @@ export const insertOneProduct = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const insertManyProducts = async (req, res) => {
     try {
         const items = req.body
@@ -31,7 +29,6 @@ export const insertManyProducts = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const updateProduct = async (req, res) => {
     try {
         const id = req.params
@@ -43,7 +40,6 @@ export const updateProduct = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const deleteProduct = async (req, res) => {
     try {
         const id = req.params

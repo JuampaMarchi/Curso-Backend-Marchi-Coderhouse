@@ -9,7 +9,6 @@ export const getProducts = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const insertProduct = async (req, res) => {
     try {
         const { data } = req.body
@@ -20,7 +19,6 @@ export const insertProduct = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const updateProduct = async (req, res) => {
     try {
         const { id } = req.params
@@ -32,7 +30,6 @@ export const updateProduct = async (req, res) => {
         return res.status(500)
     }
 }
-
 export const deleteProduct = async (req, res) => {
     try {
         const { id } = req.params
@@ -43,4 +40,3 @@ export const deleteProduct = async (req, res) => {
         return res.status(500)
     }
 }
-

@@ -1,13 +1,3 @@
-import { mysql } from "../../../config/db.js";
+import { CartMysqlDAO } from "../../../DAOs/carrito/cartMysqlDAO.js";
 
-export class CarritoMariaDB {
-    static client
-    constructor(){
-        if(Producto.client){
-            return Producto.client
-        }
-        Producto.client = mysql
-        this.client = Producto.client
-    }
-
-}
+export const cartMysql = new CartMysqlDAO()

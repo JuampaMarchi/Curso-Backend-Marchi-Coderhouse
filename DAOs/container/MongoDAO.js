@@ -12,19 +12,43 @@ export class MongoDAO {
         this.collection = collection
     }
     async list() {
-        const result = await this.collection.find({})
-        return result
+        try {
+            const result = await this.collection.find({})
+            return result
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
     }
     async insert(data){
-        await this.collection.insertOne(data)
-        console.log('Item insertado')
+        try {
+            await this.collection.insertOne(data)
+            console.log('Item insertado')
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
+    async insertMany(data){
+        try {
+            await this.collection.insertMany(data)
+            console.log('Items insertados')
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
     }
     async update(criteria, data){
-        await this.collection.update(criteria, data)
-        console.log('Item actualizado')
+        try {
+            await this.collection.update(criteria, data)
+            console.log('Item actualizado')
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
     }
     async remove(criteria){
-        await this.collection.remove(criteria)
+        try {
+            await this.collection.remove(criteria)
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
     }
 }
 

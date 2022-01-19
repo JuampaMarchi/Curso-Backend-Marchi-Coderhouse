@@ -26,7 +26,7 @@ export class FirebaseDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insertOne(data, item_id) {
+    async insertOne(item_id, data) {
         try {
             let id = item_id
             let doc = this.query.doc(`${id}`)
@@ -36,7 +36,7 @@ export class FirebaseDAO {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insertMany(data, item_id) {
+    async insertMany(item_id, data) {
         try {
             let id = item_id
             let doc = this.query.doc(`${id}`)
