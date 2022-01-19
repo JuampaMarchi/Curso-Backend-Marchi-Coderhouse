@@ -1,6 +1,8 @@
 ./node_modules
-package-lock.json
 node_modules
+./utils/firebase/config/curso-backend-dbb64-firebase-adminsdk-119gx-49c5c456bb.json
+utils/firebase/config/curso-backend-dbb64-firebase-adminsdk-119gx-49c5c456bb.json
+package-lock.json
 .env
 
 

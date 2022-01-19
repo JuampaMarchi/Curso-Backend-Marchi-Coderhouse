@@ -13,5 +13,6 @@ export const db = {
     database: process.env.DB_NAME,
     mongo_host: process.env.MONGO_DB_URI,
     mongo_name: process.env.MONGO_DB_NAME,
-    cors: process.env.CORS
+    cors: process.env.CORS,
+    db_engine: process.env.DB_ENGINE_NAME
 }
