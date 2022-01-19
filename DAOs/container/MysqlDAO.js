@@ -26,6 +26,14 @@ export class MysqlDAO {
             console.log(`Tuvimos este error: ${error}`)
         }
     }
+    async insertMany(data){
+        try {
+            await this.client(this.table).insert(data)
+            console.log('Producto insertado con exito')
+        } catch (error) {
+            console.log(`Tuvimos este error: ${error}`)
+        }
+    }
     async update(id, data){
         try {
             await this.client(this.table).where({id: id}).update(data)

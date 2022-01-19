@@ -1,8 +1,8 @@
-import { CartDatabase } from "../../../DAOs/index.js"
+import { CartDB } from "../services/database.js"
 
 export const getCarts = async (req, res) => {
     try {
-        const list = await CartDatabase.read()
+        const list = await CartDB.read()
         res.json(list)
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
@@ -12,7 +12,7 @@ export const getCarts = async (req, res) => {
 export const insertCart = async (req, res) => {
     try {
         const { data } = req.body
-        await CartDatabase.insertOne(data)
+        await CartDB.insertOne(data)
         res.send('El producto fue insertado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
@@ -23,7 +23,7 @@ export const updateCart = async (req, res) => {
     try {
         const { id } = req.params
         const { data } = req.body
-        await CartDatabase.update(id, data)
+        await CartDB.update(id, data)
         res.send('El producto fue actualizado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)
@@ -33,7 +33,7 @@ export const updateCart = async (req, res) => {
 export const deleteCart = async (req, res) => {
     try {
         const { id } = req.params
-        await CartDatabase.delete(id)
+        await CartDB.remove(id)
         res.send('El producto fue eliminado con exito')
     } catch (error) {
         console.log(`Tuvimos el siguiente error: ${error}`)

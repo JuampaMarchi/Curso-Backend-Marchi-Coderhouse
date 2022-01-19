@@ -1,8 +1,8 @@
-import { ProductDatabase } from "../../../DAOs/index.js"
+import { ProductDB } from "../services/database.js"
 
 export const getProducts = async (req, res) => {
     try {
-        const list = await productSqlite.read()
+        const list = await ProductDB.read()
         res.json(list)
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)
@@ -12,7 +12,7 @@ export const getProducts = async (req, res) => {
 export const insertOneProduct = async (req, res) => {
     try {
         const { data } = req.body
-        await productSqlite.insert(data)
+        await ProductDB.insertOne(data)
         res.send('El producto se cargo correctamente')
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)
@@ -22,7 +22,7 @@ export const insertOneProduct = async (req, res) => {
 export const insertManyProducts = async (req, res) => {
     try {
         const { data } = req.body
-        await productSqlite.insert(data)
+        await ProductDB.insertMany(data)
         res.send('Los productos se cargaron correctamente')
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)
@@ -33,7 +33,7 @@ export const updateProduct = async (req, res) => {
     try {
         const { id } = req.params
         const { data } = req.body
-        await productSqlite.update(id, data)
+        await ProductDB.update(id, data)
         res.send(`El producto con id "${id}" se actualizo correctamente`)
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)
@@ -43,7 +43,7 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
     try {
         const { id } = req.params
-        await productSqlite.delete(id)
+        await ProductDB.remove(id)
         res.send(`El producto con id "${id}" se elimino correctamente`)
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)

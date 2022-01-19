@@ -26,6 +26,14 @@ export class SqliteDAO {
             console.log(`Tuvimos este error: ${error}`)
         }
     }
+    async insertMany(data){
+        try {
+            await sqlite.client(this.table).insert(data)
+            console.log('Producto insertado con exito')
+        } catch (error) {
+            console.log(`Tuvimos este error: ${error}`)
+        }
+    }
     async update(id, data){
         try {
             await sqlite.client(this.table).where({id: id}).update(data)

@@ -9,30 +9,40 @@ import { CartMysqlDAO } from "./carrito/cartMysqlDAO.js";
 import { CartSqliteDAO } from './carrito/cartSqliteDAO.js'
 
 export const ProductDatabase = ()=>{
+    let database;
     switch (db.engine) {
         case 'firebase':
-            return database = new ProductFirebaseDAO()
+            database = new ProductFirebaseDAO()
+            return database
         case 'mongo':
-            return database = new CartMongoDAO()
+            database = new CartMongoDAO()
+            return database
         case 'mariaDB':
-            return database = new ProductoMysqlDAO()
+            database = new ProductoMysqlDAO()
+            return database
         case 'sqlite':
-            return database = new ProductSqliteDAO()
+            database = new ProductSqliteDAO()
+            return database
         default:
             console.log('Error al cargar la base de datos.')
             break;
     }
 }
 export const CartDatabase = ()=>{
+    let database;
     switch (db.engine) {
         case 'firebase':
-            return database = new CartFirebaseDAO()
+            database = new CartFirebaseDAO()
+            return database
         case 'mongo':
-            return database = new ProductoMongoDAO()
+            database = new ProductoMongoDAO()
+            return database
         case 'mariaDB':
-            return database = new CartMysqlDAO()
+            database = new CartMysqlDAO()
+            return database
         case 'sqlite':
-            return database = new CartSqliteDAO()
+            database = new CartSqliteDAO()
+            return database
         default:
             console.log('Error al cargar la base de datos.')
             break;
