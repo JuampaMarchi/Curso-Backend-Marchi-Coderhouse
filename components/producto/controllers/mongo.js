@@ -15,5 +15,6 @@ export const insertar = async (req, res) => {
         
     } catch (error) {
         console.log(`Tuvimos este error: ${error}`)
+        return res.status(500)
     }
 }

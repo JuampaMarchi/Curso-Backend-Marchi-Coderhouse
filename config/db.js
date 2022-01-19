@@ -27,7 +27,6 @@ export const CRUD = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log('Conectado a MongoDB')
     } catch (error) {
         console.log(error)
     }

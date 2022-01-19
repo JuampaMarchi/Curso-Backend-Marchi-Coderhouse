@@ -1,3 +1,3 @@
-import { ProductoMysqlDAO } from "../../../DAOs/extensions/productoMysqlDAO.js";
+import { ProductoMysqlDAO } from "../../../DAOs/products/productoMysqlDAO.js";
 
 export const productsMysql = new ProductoMysqlDAO()
