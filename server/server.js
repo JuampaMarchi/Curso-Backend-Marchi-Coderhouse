@@ -9,6 +9,8 @@ import { prodRouter } from '../routes/products.js'
 import { messageRouter } from '../routes/messages.js'
 import { mainRouter } from '../routes/main.js'
 import { cartRouter } from '../routes/cart.js'
+import { testRouter } from '../routes/product-test.js'
+import { ChatLog } from '../components/container/controllers/chat.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
@@ -19,6 +21,8 @@ export class Server {
         this.prodPath = '/api/products',
         this.messagePath = '/api/message',
         this.cartPath = '/api/cart'
+        this.testPath = '/api/products-test'
+        this.chat = new ChatLog()
         this.middlewares(),
         this.routes(),
         this.viewEngine()
@@ -33,6 +37,7 @@ export class Server {
         this.app.use(this.prodPath, prodRouter)
         this.app.use(this.messagePath, messageRouter)
         this.app.use(this.cartPath, cartRouter)
+        this.app.use(this.testPath, testRouter)
     }
     viewEngine(){
         this.app.set('views', path.join(__dirname, "../views", "ejs"))
@@ -42,7 +47,7 @@ export class Server {
         const httpServer = new HttpServer(this.app)
         const socket = new Socket(httpServer)
         socket.init()
-        socket.initProd()
+        //socket.initProd()
         httpServer.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)
         })

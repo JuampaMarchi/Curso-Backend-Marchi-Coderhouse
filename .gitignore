@@ -1,6 +1,6 @@
 ./node_modules
 package-lock.json
 node_modules
-scripts/script express.js
-scripts/script manejo_archivos.js
 .env
+./utils/firebase/config/curso-backend-dbb64-firebase-adminsdk-119gx-49c5c456bb.json
+/utils/firebase/config/curso-backend-dbb64-firebase-adminsdk-119gx-49c5c456bb.json

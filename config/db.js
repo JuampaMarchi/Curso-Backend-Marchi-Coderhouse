@@ -1,4 +1,5 @@
 import knex from "knex";
+import mongoose from 'mongoose'
 import { db } from "./index.js";
 
 export const mysql = knex({
@@ -16,5 +17,19 @@ export const sqlite = knex({
     },
     useNullAsDefault: true
 })
+
+export let connection;
+
+export const CRUD = async () => {
+    try {
+        const URL = db.mongo_atlas
+        connection = await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 

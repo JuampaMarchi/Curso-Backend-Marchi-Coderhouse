@@ -1,9 +1,9 @@
-import {Server as SocketIO} from 'socket.io'
-import { listProducts, insertProduct, bringLastProd } from '../../components/container/controllers/products.js'
-import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
+//import { listProducts, insertProduct, bringLastProd } from '../../components/container/controllers/products.js'
 import moment from 'moment'
-const prodList = await listProducts()
+import {Server as SocketIO} from 'socket.io'
+import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
 const chatLog = await bringMessages()
+//const prodList = await listProducts()
 
 export class Socket{
     static instance
@@ -15,7 +15,7 @@ export class Socket{
         this.io = new SocketIO(http)
         this.chatLog = chatLog
         this.users = []
-        this.products = prodList
+        //this.products = prodList
     }
     init(){
         try {
@@ -47,19 +47,19 @@ export class Socket{
             throw new Error(`Ocurrio el siguiente error: ${err}`)
         }
     }
-    initProd(){
-        try {
-            this.io.on('connection', socket=>{
-                socket.emit('sendProd', this.products)
-                socket.on('loadProd', async data=>{
-                    insertProduct(data)
-                    const newProd = await bringLastProd()
-                    this.products.push(newProd)
-                    this.io.sockets.emit('sendToAll', newProd)
-                })
-            })
-        } catch (err) {
-            throw new Error(`Ocurrio el siguiente error: ${err}`)
-        }
-    }
+    // initProd(){
+    //     try {
+    //         this.io.on('connection', socket=>{
+    //             socket.emit('sendProd', this.products)
+    //             socket.on('loadProd', async data=>{
+    //                 insertProduct(data)
+    //                 const newProd = await bringLastProd()
+    //                 this.products.push(newProd)
+    //                 this.io.sockets.emit('sendToAll', newProd)
+    //             })
+    //         })
+    //     } catch (err) {
+    //         throw new Error(`Ocurrio el siguiente error: ${err}`)
+    //     }
+    // }
 }
