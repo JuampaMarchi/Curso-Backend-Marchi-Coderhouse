@@ -4,7 +4,7 @@
 import {Server as SocketIO} from 'socket.io'
 import { ChatLog } from '../../components/container/controllers/chat.js'
 const ChatServer = new ChatLog()
-const chatLog = await ChatServer.bringMessages()
+
 
 export class Socket{
     static instance
@@ -14,19 +14,19 @@ export class Socket{
         }
         Socket.instance = this
         this.io = new SocketIO(http)
-        this.chatLog = chatLog
         this.users = []
         //this.products = prodList
     }
     init(){
         try {
-            this.io.on('connection', socket=>{
+            this.io.on('connection', async socket=>{
                 console.log('Usuario contectado!')
-                socket.emit('init', this.chatLog)
+                const chatLog = await ChatServer.bringMessages()
+                socket.emit('init', chatLog)
                 socket.on('message', async data=>{
-                    ChatServer.insertMessage(data)
-                    this.chatLog.push(data)
-                    this.io.sockets.emit('emitToAll', this.chatLog)
+                    await ChatServer.insertMessage(data)
+                    const newChatLog = await ChatServer.bringMessages()
+                    this.io.sockets.emit('emitToAll', newChatLog)
                 })
                 socket.on('addUser', data=>{
                     console.log('usuario recibido')
