@@ -21,18 +21,18 @@ export class ChatLog {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async insertMessage () {
+    async insertMessage (data) {
         try {
             const item = {
                 author: {
-                    id: 'pepe@pepe.com',
-                    nombre: 'Pedro',
-                    apellido: 'Jimenez',
-                    edad: '25',
-                    alias: 'Pepe',
-                    avatar: 'avatar_pedro'
+                    id: data.author.id,
+                    nombre: data.author.nombre,
+                    apellido: data.author.apellido,
+                    edad: data.author.edad,
+                    alias: data.author.alias,
+                    avatar: `avatar_de_${data.author.alias}`
                 },
-                mensaje: 'Buenas, todo tranqui aca. Ustedes ??',
+                mensaje: data.mensaje,
                 enviado: moment().format('DD/MM/YYYY HH:mm:ss')
             }
             const new_message = new this.collection(item)

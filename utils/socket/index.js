@@ -1,9 +1,10 @@
 //import { listProducts, insertProduct, bringLastProd } from '../../components/container/controllers/products.js'
-import moment from 'moment'
-import {Server as SocketIO} from 'socket.io'
-import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
-const chatLog = await bringMessages()
+// import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
 //const prodList = await listProducts()
+import {Server as SocketIO} from 'socket.io'
+import { ChatLog } from '../../components/container/controllers/chat.js'
+const ChatServer = new ChatLog()
+const chatLog = await ChatServer.bringMessages()
 
 export class Socket{
     static instance
@@ -23,16 +24,14 @@ export class Socket{
                 console.log('Usuario contectado!')
                 socket.emit('init', this.chatLog)
                 socket.on('message', async data=>{
-                    const stamp = moment().format('DD/MM/YYYY HH:mm:ss')
-                    insertMessage({user_name: data.name, message: data.message, sent_at: stamp})
-                    const newMessage = await bringMessagesByStamp(stamp)
-                    this.chatLog.push(newMessage)
+                    ChatServer.insertMessage(data)
+                    this.chatLog.push(data)
                     this.io.sockets.emit('emitToAll', this.chatLog)
                 })
                 socket.on('addUser', data=>{
                     console.log('usuario recibido')
                     const newUser = {
-                        id: socket.id,
+                        socket_id: socket.id,
                         ...data,
                         active: true
                     }

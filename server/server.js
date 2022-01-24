@@ -10,7 +10,6 @@ import { messageRouter } from '../routes/messages.js'
 import { mainRouter } from '../routes/main.js'
 import { cartRouter } from '../routes/cart.js'
 import { testRouter } from '../routes/product-test.js'
-import { ChatLog } from '../components/container/controllers/chat.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
@@ -22,7 +21,6 @@ export class Server {
         this.messagePath = '/api/message',
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
-        this.chat = new ChatLog()
         this.middlewares(),
         this.routes(),
         this.viewEngine()

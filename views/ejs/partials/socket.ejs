@@ -9,8 +9,11 @@
     user_data_form.addEventListener('submit', e=>{
         e.preventDefault()
         user = {
-            name: e.target[0].value,
-            email: e.target[1].value
+            id: e.target[4].value,
+            nombre: e.target[0].value,
+            apellido: e.target[1].value,
+            alias: e.target[2].value,
+            edad: e.target[3].value
         }
         if(user.name == '' || user.email == ''){
             window.location.reload()
@@ -21,17 +24,18 @@
     })
     send_button.addEventListener('click', e=>{
         let sentMessage = {
-            ...user,
-            message: text_input.value
+            author: {...user},
+            mensaje: text_input.value
         }
         socket.emit('message', sentMessage)
         text_input.value = ''
     })
     function loadChat(){
         socket.on('init', data=>{
+            console.log(data)
             let inner = ``
             data.forEach(element=>{
-                inner += `<b>${element.user_name}: <i>${element.message}</i></b><br>`
+                inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
             })
             chat_box.innerHTML = inner
         })
@@ -41,7 +45,7 @@
             console.log('mensaje recibido')
             let inner = ``
             data.forEach(element=>{
-                inner += `<b>${element.user_name}: <i>${element.message}</i></b><br>`
+                inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
             })
             chat_box.innerHTML = inner
         })

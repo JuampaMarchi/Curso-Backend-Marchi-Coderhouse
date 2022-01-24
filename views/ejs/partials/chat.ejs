@@ -9,9 +9,15 @@
 <div id="chat_container" class="chat_container container d-flex flex-column justify-content-center align-items-center">    
     <div>
         <form id="user_data">
-            <div>
-                <label for="user_name" class="form-label">Usuario: </label>
+            <div class="chat_container container d-flex flex-column justify-content-center align-items-center">
+                <label for="user_name" class="form-label">Nombre: </label>
                 <input type="text" id="user_name" placeholder="Ingresa tu nombre">
+                <label for="user_last_name" class="form-label">Apellido: </label>
+                <input type="text" id="user_last_name" placeholder="Ingresa tu apellido">
+                <label for="user_alias" class="form-label">Usuario: </label>
+                <input type="text" id="user_alias" placeholder="Ingresa tu usuario">
+                <label for="user_age" class="form-label">Edad: </label>
+                <input type="text" id="user_age" placeholder="Ingresa tu edad">
                 <label for="user_email" class="form-label">Correo: </label>
                 <input type="text" id="user_email" placeholder="Ingresa tu correo">
                 <button type="submit" class="btn btn-info">Ingresar</button>
