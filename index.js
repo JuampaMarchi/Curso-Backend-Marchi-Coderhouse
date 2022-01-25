@@ -1,14 +1,10 @@
 import express from 'express'
-import { Database } from './config/db.js'
-import { dbconfig, db } from './config/index.js'
-import cors from 'cors'
+import { config } from "dotenv";
+config()
 const app = express()
-const PORT = dbconfig.port
-const db_instance = new Database()
-const db_obj = db_instance.client
+const PORT = process.env.port
 
 //MIDDLEWARES
-app.use(cors(db.cors))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
