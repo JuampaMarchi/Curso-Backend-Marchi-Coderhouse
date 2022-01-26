@@ -42,5 +42,14 @@ export class ChatLog {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    async arrayToObject(array) {
+        try {
+            const newObj = {
+                author: {}
+            }
+        } catch (error) {
+            console.log(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
 }
 

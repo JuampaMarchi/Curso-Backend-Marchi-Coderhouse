@@ -2,6 +2,8 @@
 // import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
 //const prodList = await listProducts()
 import {Server as SocketIO} from 'socket.io'
+import { normalizedObj } from '../normalizr/schemas.js'
+import { printObj } from '../obj_printer/index.js'
 import { ChatLog } from '../../components/container/controllers/chat.js'
 const ChatServer = new ChatLog()
 
@@ -21,7 +23,18 @@ export class Socket{
         try {
             this.io.on('connection', async socket=>{
                 console.log('Usuario contectado!')
-                const chatLog = await ChatServer.bringMessages()
+                const mongoData = await ChatServer.bringMessages()
+                const chatLog = mongoData.map((e)=>{
+                    return {
+                        author: e.author,
+                        mensaje: e.mensaje,
+                        enviado: e.enviado
+                    }
+                })
+                //const chatObj = Object.assign({}, chatLog)
+                //console.log(chatLog)
+                const normChat = normalizedObj(chatLog)
+                console.log(printObj(normChat))
                 socket.emit('init', chatLog)
                 socket.on('message', async data=>{
                     await ChatServer.insertMessage(data)
