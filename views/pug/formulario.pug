@@ -1,9 +1,0 @@
-formularios
-    h1(class='display-4')="Bienvenido"
-        smal(class='text-muted')="Aqui podra ver y cargar archivos"
-    div(class='d-flex align-content-center justify-content-center')
-        form(action="../../productos", id='add', method="POST", style='margin: 2rem 2rem 0rem 2rem;') 
-            div(class='d-flex flex-column align-items-center')
-                input(type="text", name="name", class="form-control", placeholder="Nombre del Producto",style="margin-bottom: 10px;")
-                input(type="text", name="price", class="form-control", placeholder="Precio del Producto", style="margin-bottom: 10px;")
-                button(type="submit" class="btn btn-primary")="Ingresar Producto"

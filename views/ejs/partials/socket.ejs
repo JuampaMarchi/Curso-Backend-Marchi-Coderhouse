@@ -30,21 +30,32 @@
         socket.emit('message', sentMessage)
         text_input.value = ''
     })
+    async function denormalizeChat(chat){
+        const userSchema = new normalizr.schema.Entity('users', {}, {idAttribute: 'alias'})
+
+        const chatSchema =  new normalizr.schema.Entity('chatLog', {
+            author: userSchema
+        }, {idAttribute: 'enviado'})
+
+        return await normalizr.denormalize(chat.result, [chatSchema], chat.entities)
+    }
     function loadChat(){
-        socket.on('init', data=>{
-            console.log(data)
+        socket.on('init', async data=>{
+            const chatData = await denormalizeChat(data)
+            console.log(chatData)
             let inner = ``
-            data.forEach(element=>{
+            chatData.forEach(element=>{
                 inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
             })
             chat_box.innerHTML = inner
         })
     }
     function readSockets(){
-        socket.on('emitToAll', data=>{
+        socket.on('emitToAll', async data=>{
             console.log('mensaje recibido')
+            const chatData = await denormalizeChat(data)
             let inner = ``
-            data.forEach(element=>{
+            chatData.forEach(element=>{
                 inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
             })
             chat_box.innerHTML = inner

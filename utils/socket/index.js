@@ -2,7 +2,7 @@
 // import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
 //const prodList = await listProducts()
 import {Server as SocketIO} from 'socket.io'
-import { normalizedObj } from '../normalizr/schemas.js'
+import { normalizedObj, denormalizeObj } from '../normalizr/schemas.js'
 import { printObj } from '../obj_printer/index.js'
 import { ChatLog } from '../../components/container/controllers/chat.js'
 const ChatServer = new ChatLog()
@@ -31,16 +31,26 @@ export class Socket{
                         enviado: e.enviado
                     }
                 })
-                //const chatObj = Object.assign({}, chatLog)
-                //console.log(chatLog)
                 const normChat = normalizedObj(chatLog)
-                console.log(printObj(normChat))
-                socket.emit('init', chatLog)
+                const denormChat = denormalizeObj(normChat)
+                console.log(printObj(denormChat))
+                //console.log(printObj(Object.values(normChat.entities.chatLog)))
+                socket.emit('init', normChat)
+
                 socket.on('message', async data=>{
                     await ChatServer.insertMessage(data)
-                    const newChatLog = await ChatServer.bringMessages()
-                    this.io.sockets.emit('emitToAll', newChatLog)
+                    const newChatLogRaw = await ChatServer.bringMessages()
+                    const newChatLog = newChatLogRaw.map((e)=>{
+                        return {
+                            author: e.author,
+                            mensaje: e.mensaje,
+                            enviado: e.enviado
+                        }
+                    })
+                    const normNewChatLog = normalizedObj(newChatLog)
+                    this.io.sockets.emit('emitToAll', normNewChatLog)
                 })
+
                 socket.on('addUser', data=>{
                     console.log('usuario recibido')
                     const newUser = {
@@ -51,6 +61,7 @@ export class Socket{
                     this.users.push(newUser)
                     this.io.sockets.emit('loadUsers', this.users)
                 })
+
                 socket.on('disconnect', data=>{
                     console.log('Usuario desconectado...')
                 })
