@@ -1,34 +1,26 @@
 {
-  "name": "Curso-Backend-Marchi-Coderhouse",
+  "name": "passport",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "jest",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse/issues"
-  },
-  "homepage": "https://github.com/JuampaMarchi/Curso-Backend-Marchi-Coderhouse#readme",
-  "devDependencies": {
-    "jest": "^27.3.1",
-    "nodemon": "^2.0.14"
-  },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
-    "moment": "^2.29.1"
+    "express-session": "^1.17.2",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
