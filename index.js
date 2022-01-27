@@ -6,8 +6,6 @@ let path = require("path");
 let passport = require("passport");
 let twitterStrategy = require('passport-twitter').Strategy
 let usuarios = [];
-let TWITTER_API_KEY = 'lVADDjTypKsvcr9o5MWAcdMHF'
-let TWITTER_API_KEY_SECRET = 'WGa9XLIml2yb6UuVcBdaj9K3S57U5x9fBPgdCnNFSm19uNrWVn'
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
