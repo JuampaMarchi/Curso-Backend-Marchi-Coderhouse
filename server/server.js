@@ -1,37 +1,59 @@
 import express from 'express'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import MongoStore from 'connect-mongo'
+import session from 'express-session'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { Socket } from '../utils/socket/index.js'
 import { Server as HttpServer } from 'http'
 import { dbConfig, db } from '../config/index.js'
+import { rootRouter } from '../routes/root.js'
 import { prodRouter } from '../routes/products.js'
 import { messageRouter } from '../routes/messages.js'
-import { mainRouter } from '../routes/main.js'
+import { chatRouter } from '../routes/chat.js'
 import { cartRouter } from '../routes/cart.js'
 import { testRouter } from '../routes/product-test.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export class Server {
     constructor(){
-        this.app = express(),
+        this.app = express()
         this.port = dbConfig.port
         this.mainPath = '/'
-        this.prodPath = '/api/products',
-        this.messagePath = '/api/message',
+        this.chatPath = '/chat'
+        this.prodPath = '/api/products'
+        this.messagePath = '/api/message'
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
-        this.middlewares(),
-        this.routes(),
+        this.middlewares()
+        this.session()
+        this.routes()
         this.viewEngine()
     }
     middlewares(){
         this.app.use(cors(db.cors))
         this.app.use(express.json())
         this.app.use(express.urlencoded({extended: true}))
+        this.app.use(cookieParser())
+    }
+    session(){
+        this.app.use(session({
+            store: MongoStore.create({
+                mongoUrl: db.mongo_atlas,
+                mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true}
+            }),
+            secret: 'nadieLoSabe',
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                maxAge: 60000,
+            }
+        }))
     }
     routes(){
-        this.app.use(this.mainPath, mainRouter)
+        this.app.use(this.mainPath, rootRouter)
+        this.app.use(this.chatPath, chatRouter)
         this.app.use(this.prodPath, prodRouter)
         this.app.use(this.messagePath, messageRouter)
         this.app.use(this.cartPath, cartRouter)

@@ -1,6 +1,3 @@
-//import { listProducts, insertProduct, bringLastProd } from '../../components/container/controllers/products.js'
-// import { insertMessage, bringMessages, bringMessagesByStamp } from '../../components/container/controllers/messages.js'
-//const prodList = await listProducts()
 import {Server as SocketIO} from 'socket.io'
 import { normalizedObj, denormalizeObj } from '../normalizr/schemas.js'
 import { printObj } from '../obj_printer/index.js'
@@ -17,7 +14,6 @@ export class Socket{
         Socket.instance = this
         this.io = new SocketIO(http)
         this.users = []
-        //this.products = prodList
     }
     init(){
         try {
@@ -33,8 +29,6 @@ export class Socket{
                 })
                 const normChat = normalizedObj(chatLog)
                 const denormChat = denormalizeObj(normChat)
-                console.log(printObj(denormChat))
-                //console.log(printObj(Object.values(normChat.entities.chatLog)))
                 socket.emit('init', normChat)
 
                 socket.on('message', async data=>{

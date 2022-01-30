@@ -42,7 +42,6 @@
     function loadChat(){
         socket.on('init', async data=>{
             const chatData = await denormalizeChat(data)
-            console.log(chatData)
             let inner = ``
             chatData.forEach(element=>{
                 inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
@@ -52,7 +51,6 @@
     }
     function readSockets(){
         socket.on('emitToAll', async data=>{
-            console.log('mensaje recibido')
             const chatData = await denormalizeChat(data)
             let inner = ``
             chatData.forEach(element=>{
