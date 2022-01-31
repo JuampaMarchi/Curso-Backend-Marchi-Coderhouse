@@ -1,5 +1,6 @@
 import { UserModel } from "../../../models/user.js";
 import { CRUD, connection } from "../../../config/db.js";
+import { encrypt } from "../../../utils/bcrypt/index.js";
 
 export class UserDatabase {
     static client
@@ -20,7 +21,8 @@ export class UserDatabase {
     }
     async insert(user_data){
         try {
-            await this.collection.create({'user_name': user_data.name, 'password': user_data.password})
+            await this.collection.create({'user_name': user_data.username, 'password': encrypt(user_data.password)})
+            console.log(`Usuario ${user_data.name} creado con exito!`)
         } catch (error) {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }

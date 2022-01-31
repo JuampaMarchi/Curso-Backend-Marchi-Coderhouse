@@ -3,7 +3,9 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import MongoStore from 'connect-mongo'
 import session from 'express-session'
+import passport from 'passport'
 import path, { dirname } from 'path'
+import { loginStrategy, registerStrategy } from '../utils/passport/strategies.js'
 import { fileURLToPath } from 'url'
 import { Socket } from '../utils/socket/index.js'
 import { Server as HttpServer } from 'http'
@@ -28,6 +30,7 @@ export class Server {
         this.testPath = '/api/products-test'
         this.middlewares()
         this.session()
+        this.passport()
         this.routes()
         this.viewEngine()
     }
@@ -50,6 +53,12 @@ export class Server {
                 maxAge: 60000,
             }
         }))
+        this.app.use(passport.initialize())
+        this.app.use(passport.session())
+    }
+    passport(){
+        loginStrategy();
+        registerStrategy();
     }
     routes(){
         this.app.use(this.mainPath, rootRouter)
