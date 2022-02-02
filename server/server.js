@@ -5,7 +5,7 @@ import MongoStore from 'connect-mongo'
 import session from 'express-session'
 import passport from 'passport'
 import path, { dirname } from 'path'
-import { loginStrategy, registerStrategy } from '../utils/passport/strategies.js'
+import { loginStrategy, registerStrategy, serialize, deserialize } from '../utils/passport/strategies.js'
 import { fileURLToPath } from 'url'
 import { Socket } from '../utils/socket/index.js'
 import { Server as HttpServer } from 'http'
@@ -59,6 +59,8 @@ export class Server {
     passport(){
         loginStrategy();
         registerStrategy();
+        serialize();
+        deserialize()
     }
     routes(){
         this.app.use(this.mainPath, rootRouter)

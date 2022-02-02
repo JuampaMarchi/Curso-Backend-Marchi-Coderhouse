@@ -13,7 +13,7 @@ export class UserDatabase {
     }
     async findByName(name){
         try {
-            const response = await this.collection.findOne({'user_name': name})
+            const response = await this.collection.findOne({username: name})
             return response
         } catch (error) {
             console.log(`Tuvimos el siguiente error: ${error}`)

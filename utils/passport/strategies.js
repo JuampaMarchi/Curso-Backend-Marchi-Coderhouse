@@ -5,12 +5,13 @@ import { checkValue } from "../bcrypt/index.js";
 
 export const loginStrategy = () => {
     passport.use('login', new Strategy( async (username, password, done) => {
+        
         const user = await Users.findByName(username)
-    
+
         if(!user) return done(null, false)
     
-        if(!checkValue()) return done(null, false)
-    
+        if(!checkValue(password, user.password)) return done(null, false)
+
         return done(null, user)
     }))
 }
@@ -33,3 +34,11 @@ export const registerStrategy = () => {
         return done(null, user)
     }))
 }
+
+export const serialize = () => passport.serializeUser((user, done) => done(null, user.username))
+
+export const deserialize = () => passport.deserializeUser(async (username, done) => {
+    let user = await Users.findByName(username)
+    //console.log(user)
+    done(null, user)
+})
