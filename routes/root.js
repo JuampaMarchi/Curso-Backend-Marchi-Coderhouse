@@ -1,6 +1,5 @@
 import passport from "passport";
 import { Router } from "express";
-import { Users } from "../components/users/index.js"
 import { isAuth, isNotAuth } from "../utils/middlewares/index.js";
 
 export const rootRouter = new Router()
@@ -12,8 +11,9 @@ rootRouter.get('/', (req, res, next) => {
 
 rootRouter.get('/main', isAuth, (req, res, next) => {
     let user = req.user
+    let products = [{id: '1', name: 'producto 1', price: 100}, {id: '2', name: 'producto 2', price: 200}]
     req.session.touch()
-    res.render('main', {user})
+    res.render('main', {user, products})
 })
 
 rootRouter.get('/log_out', (req, res, next) => {
@@ -36,15 +36,3 @@ rootRouter.get('/error', (req, res, next) => {
 rootRouter.post('/register', passport.authenticate('register', {failureRedirect: 'error', successRedirect: 'main'}))
 
 rootRouter.post('/', passport.authenticate('login', {failureRedirect: 'error', successRedirect: 'main'}))
-    // const { username, password } = req.body
-    // const user = await Users.findByName(username)
-    // if(user) {
-    //     if(user.password == password){
-    //         req.session.user = user
-    //         return res.redirect('main')
-    //     } else {
-    //         return res.send('Usuario y/o contraseña invalidos')
-    //     }
-    // }
-    // res.send(`No se encontro usuario`)
-// })

@@ -33,10 +33,12 @@
 </style>
 <body>
     <div class="contenedor_app">
-        <div class="formulario">
+        <div class="formulario d-flex flex-column align-items-center">
             <h1>Bienvenido <%= user.username %> </h1>
             <br>
-            <a class="btn btn-success my-3" href="/log_out">Desloguearme</a>
+            <%- include('./partials/productos'); %>
+            <br>
+            <a class="btn btn-success" href="/log_out">Desloguearme</a>
         </div>
     </div>
 </body>
