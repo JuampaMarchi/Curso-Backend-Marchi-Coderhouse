@@ -19,16 +19,16 @@ export const loginStrategy = () => {
 export const registerStrategy = () => {
     passport.use('register', new Strategy({
         passReqToCallback: true
-    }, async (username, password, done) => {
+    }, async (req, username, password, done) => {
+        
         const findUser = await Users.findByName(username)
     
         if(findUser) return done('Usuario ya registrado')
-    
+        
         const user = {
             username,
             password
         }
-    
         await Users.insert(user)
     
         return done(null, user)
@@ -39,6 +39,5 @@ export const serialize = () => passport.serializeUser((user, done) => done(null,
 
 export const deserialize = () => passport.deserializeUser(async (username, done) => {
     let user = await Users.findByName(username)
-    //console.log(user)
     done(null, user)
 })

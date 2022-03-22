@@ -21,8 +21,8 @@ export class UserDatabase {
     }
     async insert(user_data){
         try {
-            await this.collection.create({'user_name': user_data.username, 'password': encrypt(user_data.password)})
-            console.log(`Usuario ${user_data.name} creado con exito!`)
+            await this.collection.create({'username': user_data.username, 'password': encrypt(user_data.password)})
+            console.log(`Usuario ${user_data.username} creado con exito!`)
         } catch (error) {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
