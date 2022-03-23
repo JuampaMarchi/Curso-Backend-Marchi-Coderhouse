@@ -3,7 +3,7 @@ config()
 
 export const dbConfig = {
     dev: process.env.NOD_ENV !== 'production',
-    port: process.env.port
+    port: process.env.port || 8080
 }
 
 export const db = {
