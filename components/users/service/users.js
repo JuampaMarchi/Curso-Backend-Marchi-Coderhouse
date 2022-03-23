@@ -1,4 +1,4 @@
-const { UserModel } = require('../../../models/user')
+const UserModel  = require('../../../models/user')
 const { CRUD, connection } = require('../../../config/db')
 const { encrypt } = require('../../../utils/bcrypt/index')
 

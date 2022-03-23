@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy } = require('passport-local')
-const { Users } = require('../../components/users/index')
+const Users = require('../../components/users/index')
 const { checkValue } = require('../bcrypt/index')
 
 const loginStrategy = () => {
