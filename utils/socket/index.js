@@ -1,6 +1,4 @@
 const {Server: SocketIO} = require('socket.io')
-const { normalizedObj, denormalizeObj } = require('../normalizr/schemas.js') 
-const printObj = require('../obj_printer/index')
 const ChatLog = require('../../components/container/controllers/chat')
 const ChatServer = new ChatLog()
 
@@ -26,9 +24,7 @@ class Socket {
                         enviado: e.enviado
                     }
                 })
-                const normChat = normalizedObj(chatLog)
-                const denormChat = denormalizeObj(normChat)
-                socket.emit('init', normChat)
+                socket.emit('init', chatLog)
 
                 socket.on('message', async data=>{
                     await ChatServer.insertMessage(data)
@@ -40,8 +36,7 @@ class Socket {
                             enviado: e.enviado
                         }
                     })
-                    const normNewChatLog = normalizedObj(newChatLog)
-                    this.io.sockets.emit('emitToAll', normNewChatLog)
+                    this.io.sockets.emit('emitToAll', newChatLog)
                 })
 
                 socket.on('addUser', data=>{
@@ -63,21 +58,6 @@ class Socket {
             throw new Error(`Ocurrio el siguiente error: ${err}`)
         }
     }
-    // initProd(){
-    //     try {
-    //         this.io.on('connection', socket=>{
-    //             socket.emit('sendProd', this.products)
-    //             socket.on('loadProd', async data=>{
-    //                 insertProduct(data)
-    //                 const newProd = await bringLastProd()
-    //                 this.products.push(newProd)
-    //                 this.io.sockets.emit('sendToAll', newProd)
-    //             })
-    //         })
-    //     } catch (err) {
-    //         throw new Error(`Ocurrio el siguiente error: ${err}`)
-    //     }
-    // }
 }
 
 module.exports = Socket
