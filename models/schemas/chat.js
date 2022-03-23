@@ -1,4 +1,4 @@
-import Joi from "joi";
+const Joi = require('joi')
 
 let author = Joi.object
 let auth_id = Joi.string()
@@ -10,7 +10,7 @@ let auth_avatar = Joi.string()
 let message = Joi.string()
 let enviado = Joi.date()
 
-export const chatSchema = {
+const chatSchema = {
     author: {
         id: auth_id,
         nombre: auth_name,
@@ -22,3 +22,5 @@ export const chatSchema = {
     mensaje: message.required(),
     enviado: enviado
 }
+
+module.exports = chatSchema

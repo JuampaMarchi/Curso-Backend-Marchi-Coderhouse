@@ -1,16 +1,16 @@
-import knex from "knex";
-import mongoose from 'mongoose'
-import { db } from "./index.js";
+const knex = require('knex')
+const mongoose = require('mongoose')
+const config = require('./index')
 
-export const mysql = knex({
+const mysql = knex({
     client: 'mysql',
     connection: {
-        ...db
+        ...config.db
     },
     pool: { min: 0, max: 7 }
 })
 
-export const sqlite = knex({
+const sqlite = knex({
     client: 'sqlite3',
     connection: {
         filename: '/Users/juampa/Desktop/Curso Backend-Marchi-Coderhouse/db/clasecoder.sqlite'
@@ -18,11 +18,11 @@ export const sqlite = knex({
     useNullAsDefault: true
 })
 
-export let connection;
+let connection;
 
-export const CRUD = async () => {
+const CRUD = async () => {
     try {
-        const URL = db.mongo_atlas
+        const URL = config.db.mongo_atlas
         connection = await mongoose.connect(URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -32,4 +32,5 @@ export const CRUD = async () => {
     }
 }
 
+module.exports = { mysql, sqlite, connection, CRUD}
 

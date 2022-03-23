@@ -1,11 +1,10 @@
-import {Server as SocketIO} from 'socket.io'
-import { normalizedObj, denormalizeObj } from '../normalizr/schemas.js'
-import { printObj } from '../obj_printer/index.js'
-import { ChatLog } from '../../components/container/controllers/chat.js'
+const {Server: SocketIO} = require('socket.io')
+const { normalizedObj, denormalizeObj } = require('../normalizr/schemas.js') 
+const printObj = require('../obj_printer/index')
+const ChatLog = require('../../components/container/controllers/chat')
 const ChatServer = new ChatLog()
 
-
-export class Socket{
+class Socket {
     static instance
     constructor(http){
         if(Socket.instance){
@@ -80,3 +79,5 @@ export class Socket{
     //     }
     // }
 }
+
+module.exports = Socket

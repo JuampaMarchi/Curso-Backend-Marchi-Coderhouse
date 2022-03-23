@@ -1,13 +1,15 @@
-export const isAuth = (req, res, next) => {
+const isAuth = (req, res, next) => {
     
     if(req.isAuthenticated()) return next()
 
     res.redirect('error')
 }
 
-export const isNotAuth = (req, res, next) => {
+const isNotAuth = (req, res, next) => {
 
     if(!req.isAuthenticated()) return next()
 
     res.redirect('error')
 }
+
+module.exports = { isAuth, isNotAuth }

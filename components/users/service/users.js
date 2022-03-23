@@ -1,8 +1,8 @@
-import { UserModel } from "../../../models/user.js";
-import { CRUD, connection } from "../../../config/db.js";
-import { encrypt } from "../../../utils/bcrypt/index.js";
+const { UserModel } = require('../../../models/user')
+const { CRUD, connection } = require('../../../config/db')
+const { encrypt } = require('../../../utils/bcrypt/index')
 
-export class UserDatabase {
+class UserDatabase {
     static client
     constructor(){
         if(UserDatabase.client) return UserDatabase.client
@@ -28,4 +28,6 @@ export class UserDatabase {
         }
     }
 }
+
+module.exports = UserDatabase
 

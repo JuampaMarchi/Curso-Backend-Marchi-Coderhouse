@@ -1,23 +1,25 @@
-import { sqlite, mysql } from "../../../config/db.js";
+const database = require('../../../config/db')
 
-export class ProductContainer {
+class ProductContainer {
     static client
     constructor(){
         if(ProductContainer.client){
             return ProductContainer.client
         }
-        ProductContainer.client = mysql
+        ProductContainer.client = database.mysql
         this.client = ProductContainer.client
     }
 }
 
-export class MessageContainer {
+class MessageContainer {
     static client
     constructor(){
         if(MessageContainer.client){
             return MessageContainer.client
         }
-        MessageContainer.client = sqlite
+        MessageContainer.client = database.sqlite
         this.client = MessageContainer.client
     }
 }
+
+module.exports = { ProductContainer, MessageContainer}

@@ -1,8 +1,8 @@
-import { sqlite } from "../index.js";
+const sqlite = require('../index').sqlite
 
 const db = sqlite.client
 
-export const createTable = async () => {
+const createTable = async () => {
     try {
         await db.schema.createTable('messages', table => {
             table.increments('id').primary(),
@@ -14,7 +14,7 @@ export const createTable = async () => {
         console.log(`Tuvimos el siguiente problema: ${error}`)
     }
 }
-export const insertMessage = async (data) => {
+const insertMessage = async (data) => {
     try {
         await db('messages').insert(data)
         console.log('Mensaje ingresado con exito')
@@ -22,7 +22,7 @@ export const insertMessage = async (data) => {
         throw new Error(`Tuvimos el siguiente problema: ${error}`)
     }
 }
-export const bringMessages = async () => {
+const bringMessages = async () => {
     try {
         const res = await db.from('messages')
             return res
@@ -30,7 +30,7 @@ export const bringMessages = async () => {
         console.log(error)
     }
 }
-export const bringMessagesByStamp = async (stamp) => {
+const bringMessagesByStamp = async (stamp) => {
     try {
         const res = await db.from('messages').where('sent_at', '=', `${stamp}`)
         const item = res[0]
@@ -39,7 +39,7 @@ export const bringMessagesByStamp = async (stamp) => {
         console.log(error)
     }
 }
-export const clearChat = async () => {
+const clearChat = async () => {
     try {
         await db.from('messages').del()
         console.log('Mensajes eliminados')
@@ -47,3 +47,5 @@ export const clearChat = async () => {
         console.log(error)
     }
 }
+
+module.exports = { createTable, insertMessage, bringMessages, bringMessagesByStamp, clearChat }

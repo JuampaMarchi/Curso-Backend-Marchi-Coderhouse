@@ -1,15 +1,15 @@
-import moment from "moment";
-import { CRUD, connection } from "../../../config/db.js";
-import { ChatModel } from "../../../models/chat.js";
+const moment = require('moment')
+const database = require('../../../config/db')
+const ChatModel = require('../../../models/chat')
 
-export class ChatLog {
+class ChatLog {
     static client
     constructor(){
         if(ChatLog.client){
             return ChatLog.client
         }
-        CRUD()
-        ChatLog.client = connection
+        database.CRUD
+        ChatLog.client = database.connection
         this.client = ChatLog.client
         this.collection = ChatModel
     }
@@ -42,14 +42,7 @@ export class ChatLog {
             console.log(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async arrayToObject(array) {
-        try {
-            const newObj = {
-                author: {}
-            }
-        } catch (error) {
-            console.log(`Tuvimos el siguiente error: ${error}`)
-        }
-    }
 }
+
+module.exports = ChatLog
 

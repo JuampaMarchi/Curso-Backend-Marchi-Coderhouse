@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
-import { chatSchema } from './schemas/chat.js'
+const mongoose = require('mongoose')
+const chatSchema = require('./schemas/chat')
 
 const chatSchemaModel = new mongoose.Schema(chatSchema)
 
-export const ChatModel = new mongoose.model('chat', chatSchemaModel)
+const ChatModel = new mongoose.model('chat', chatSchemaModel)
+
+module.exports = ChatModel

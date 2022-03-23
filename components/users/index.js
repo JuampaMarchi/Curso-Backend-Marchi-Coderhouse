@@ -1,3 +1,5 @@
-import { UserDatabase } from "./service/users.js";
+const UserDatabase = require('./service/users')
 
-export const Users = new UserDatabase()
+const Users = new UserDatabase()
+
+module.exports = Users

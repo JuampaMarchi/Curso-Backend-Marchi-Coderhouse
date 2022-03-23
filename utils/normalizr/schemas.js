@@ -1,4 +1,4 @@
-import { schema, normalize, denormalize } from "normalizr";
+const { schema, normalize, denormalize } = require('normalizr')
 
 const userSchema = new schema.Entity('users', {}, {idAttribute: 'alias'})
 
@@ -6,9 +6,11 @@ const chatSchema =  new schema.Entity('chatLog', {
     author: userSchema
 }, {idAttribute: 'enviado'})
 
-export const normalizedObj = (chat) => normalize(chat, [chatSchema])
+const normalizedObj = (chat) => normalize(chat, [chatSchema])
 
-export const denormalizeObj = (normObj) => denormalize(normObj.result, [chatSchema], normObj.entities)
+const denormalizeObj = (normObj) => denormalize(normObj.result, [chatSchema], normObj.entities)
+
+module.exports = { normalizedObj, denormalizeObj}
 
 
 

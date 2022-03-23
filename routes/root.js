@@ -1,15 +1,15 @@
-import passport from "passport";
-import { Router } from "express";
-import { isAuth, isNotAuth } from "../utils/middlewares/index.js";
+const passport = require('passport')
+const { Router } = require('express')
+const middlewares = require('../utils/middlewares/index')
 
-export const rootRouter = new Router()
+const rootRouter = new Router()
 
 rootRouter.get('/', (req, res, next) => {
     if(req.session.user_name) return res.redirect('main')
     res.render('log_in')
 })
 
-rootRouter.get('/main', isAuth, (req, res, next) => {
+rootRouter.get('/main', middlewares.isAuth, (req, res, next) => {
     let user = req.user
     let products = [{id: '1', name: 'producto 1', price: 100}, {id: '2', name: 'producto 2', price: 200}]
     req.session.touch()
@@ -36,3 +36,5 @@ rootRouter.get('/error', (req, res, next) => {
 rootRouter.post('/register', passport.authenticate('register', {failureRedirect: 'error', successRedirect: 'main'}))
 
 rootRouter.post('/', passport.authenticate('login', {failureRedirect: 'error', successRedirect: 'main'}))
+
+module.exports = rootRouter

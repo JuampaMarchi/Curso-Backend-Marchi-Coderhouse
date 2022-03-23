@@ -1,5 +1,7 @@
-import { inspect } from 'util'
+const { inspect } = require('util')
 
-export const printObj = (obj) => {
+const printObj = (obj) => {
     console.log(inspect(obj, false, 10, true))
 }
+
+module.exports = printObj

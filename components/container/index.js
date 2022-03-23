@@ -1,5 +1,7 @@
-import { MessageContainer, ProductContainer } from "./services/container.js";
+const connections = require('./services/container')
 
-export const mysql = new ProductContainer()
+const mysql = new connections.ProductContainer()
 
-export const sqlite = new MessageContainer()
+const sqlite = new connections.MessageContainer()
+
+module.exports = { mysql, sqlite }

@@ -1,8 +1,9 @@
-import { Router } from "express";
-import faker from 'faker'
+const { Router } = require('express')
+const faker = require('faker')
 
 faker.locale = 'es'
-export const testRouter = new Router()
+
+const testRouter = new Router()
 
 testRouter.get('/', (req, res) => {
     const products = []
@@ -16,4 +17,6 @@ testRouter.get('/', (req, res) => {
     }
     res.render('index', {products})
 })
+
+module.exports = testRouter
 

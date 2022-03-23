@@ -1,7 +1,9 @@
-import { Router } from "express";
+const { Router } = require('express')
 
-export const cartRouter = new Router()
+const cartRouter = new Router()
 
 cartRouter.get('/', (req, res) => {
     res.send(`Raiz del Carrito`)
 })
+
+module.exports = cartRouter

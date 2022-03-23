@@ -1,12 +1,11 @@
-import { config } from "dotenv";
-config()
+require('dotenv').config()
 
-export const dbConfig = {
+const dbConfig = {
     dev: process.env.NOD_ENV !== 'production',
     port: process.env.port || 8080
 }
 
-export const db = {
+const db = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -16,3 +15,5 @@ export const db = {
     mongo_name: process.env.MONGO_DB_NAME,
     cors: process.env.CORS
 }
+
+module.exports = { db, dbConfig }

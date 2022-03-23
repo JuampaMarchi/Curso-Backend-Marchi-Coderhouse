@@ -1,7 +1,7 @@
-import { mysql } from "../index.js";
-const db = mysql.client
+const database = require('../index')
+const db = database.mysql.client
 
-export const createTable = async () => {
+const createTable = async () => {
     try {
         await db.schema.createTable('products', table => {
             table.increments('id')
@@ -14,7 +14,7 @@ export const createTable = async () => {
     }
 }
 
-export const insertProduct = async (data) => {
+const insertProduct = async (data) => {
     try {
         await db('products').insert(data)
         console.log('Productos ingresados con exito')
@@ -23,7 +23,7 @@ export const insertProduct = async (data) => {
     }
 }
 
-export const bringProdByName = async (name) => {
+const bringProdByName = async (name) => {
     try {
         const prod = await db('products').where('name', '=', `${name}`)
         const item = prod[0]
@@ -33,7 +33,7 @@ export const bringProdByName = async (name) => {
     }
 }
 
-export const bringProdById = async (id) => {
+const bringProdById = async (id) => {
     try {
         const prod = await db('products').where('id', '=', `${id}`)
         const item = prod[0]
@@ -43,7 +43,7 @@ export const bringProdById = async (id) => {
     }
 }
 
-export const bringLastProd = async () => {
+const bringLastProd = async () => {
     try {
         const lastProd = await db.from('products').orderBy('created_at', 'desc').limit(1)
         const item = lastProd[0]
@@ -53,7 +53,7 @@ export const bringLastProd = async () => {
     }
 }
 
-export const listProducts = async () => {
+const listProducts = async () => {
     try {
         const res = await db.from('products')
         return res
@@ -62,7 +62,7 @@ export const listProducts = async () => {
     }
 }
 
-export const deleteProducts = async (prodId) => {
+const deleteProducts = async (prodId) => {
     try {
         await db.from('products').where({id: prodId}).del()
     } catch (error) {
@@ -70,7 +70,7 @@ export const deleteProducts = async (prodId) => {
     }
 }
 
-export const updateName = async (prodId, value) => {
+const updateName = async (prodId, value) => {
     try {
         await db.from('products').where({id: prodId}).update({name: value})
         console.log(`El producto con id "${prodId}" fue actualizado`)
@@ -79,7 +79,7 @@ export const updateName = async (prodId, value) => {
     }
 }
 
-export const updatePrice = async (prodId, value) => {
+const updatePrice = async (prodId, value) => {
     try {
         await db.from('products').where({id: prodId}).update({price: value})
         console.log(`El producto con id "${prodId}" fue actualizado`)
@@ -87,3 +87,5 @@ export const updatePrice = async (prodId, value) => {
         console.log(error)
     }
 }
+
+module.exports = { createTable, insertProduct, bringProdByName, bringProdById, bringLastProd, listProducts, deleteProducts, updateName, updatePrice }

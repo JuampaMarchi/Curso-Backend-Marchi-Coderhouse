@@ -1,5 +1,7 @@
-import bcrypt from 'bcrypt'
+const bcrypt = require('bcrypt')
 
-export const encrypt = (value) => bcrypt.hashSync(value, 10)
+const encrypt = (value) => bcrypt.hashSync(value, 10)
 
-export const checkValue = (value, encValue) => bcrypt.compare(value, encValue)
+const checkValue = (value, encValue) => bcrypt.compare(value, encValue)
+
+module.exports = { encrypt, checkValue }
