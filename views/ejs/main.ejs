@@ -33,12 +33,32 @@
 </style>
 <body>
     <div class="contenedor_app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-xl-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+                <a class="btn btn-success" href="/log_out">Desloguearme</a>
+            </div>
+        </nav>
         <div class="formulario d-flex flex-column align-items-center">
             <h1>Bienvenido <%= user.username %> </h1>
             <br>
             <%- include('./partials/productos'); %>
             <br>
-            <a class="btn btn-success" href="/log_out">Desloguearme</a>
+            
         </div>
     </div>
 </body>
