@@ -1,4 +1,5 @@
 const CartModel = require('../../../models/cart-model')
+const pino = require('../../../utils/logger/pino')
 const { CRUD, connection } = require('../../../config/db')
 
 class CartDatabase {
@@ -13,20 +14,20 @@ class CartDatabase {
     async createCart(username, product){
         try {
             await this.collection.create({'owner_name': username, 'active': true, 'products': [product]})
-            console.log(`carrito para el usuario ${username} creado con exito`)
+            pino.info(`carrito para el usuario ${username} creado con exito`)
         } catch (error) {
-            console.log(`Tuvimos este error ${error}`)
+            pino.error(`Tuvimos este error ${error}`)
         }
     }
     async addToCart(username, product){
         try {
             const cartExists = await this.collection.exists({owner_name: username, active: true})
             if(!cartExists) return this.createCart(username, product)
-            console.log('ya existe un carrito activo para este usuario, agregando producto al carrito activo')
+            pino.info('ya existe un carrito activo para este usuario, agregando producto al carrito activo')
             await this.collection.updateOne({owner_name: username},{$push: {'products': product}})
-            console.log(`carrito para el usuario ${username} actualizado con exito`)
+            pino.info(`carrito para el usuario ${username} actualizado con exito`)
         } catch (error) {
-            console.log(`Tuvimos este error ${error}`)
+            pino.error(`Tuvimos este error ${error}`)
         }
     }
     async bringCart(username){
@@ -35,7 +36,7 @@ class CartDatabase {
             if(!userCart) return false
             return userCart
         } catch (error) {
-            console.log(`Tuvimos este error ${error}`)
+            pino.error(`Tuvimos este error ${error}`)
         }
     }
     async closeCart(username){
@@ -44,7 +45,7 @@ class CartDatabase {
             if(!cartExists) return console.log('El carrito ya esta cerrado')
             await this.collection.updateOne({owner_name: username}, {active: false})
         } catch (error) {
-            console.log(`Tuvimos este error: ${error}`)
+            pino.error(`Tuvimos este error ${error}`)
         }
     }
 }

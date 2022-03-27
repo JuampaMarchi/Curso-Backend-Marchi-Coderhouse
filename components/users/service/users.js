@@ -1,4 +1,5 @@
 const UserModel  = require('../../../models/user')
+const pino = require('../../../utils/logger/pino')
 const { CRUD, connection } = require('../../../config/db')
 const { encrypt } = require('../../../utils/bcrypt/index')
 
@@ -16,15 +17,15 @@ class UserDatabase {
             const response = await this.collection.findOne({username: name})
             return response
         } catch (error) {
-            console.log(`Tuvimos el siguiente error: ${error}`)
+            pino.info(`Tuvimos el siguiente error: ${error}`)
         }
     }
     async insert(user_data){
         try {
             await this.collection.create({'username': user_data.username, 'password': encrypt(user_data.password)})
-            console.log(`Usuario ${user_data.username} creado con exito!`)
+            pino.info(`Usuario ${user_data.username} creado con exito!`)
         } catch (error) {
-            console.log(`Tuvimos el siguiente error: ${error}`)
+            pino.info(`Tuvimos el siguiente error: ${error}`)
         }
     }
 }

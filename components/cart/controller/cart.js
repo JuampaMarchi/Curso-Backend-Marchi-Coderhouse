@@ -1,4 +1,5 @@
 const methods = require('../index')
+const pino = require('../../../utils/logger/pino')
 
 class CartController {
     async bringCart(req, res){
@@ -8,7 +9,7 @@ class CartController {
             console.log('cart', cart)
             return res.render('cart', {user, cart})
         } catch (error) {
-            console.log(`Tuvimos el siguiente error: ${error}`)
+            pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
     async endPurchase(req, res){
@@ -17,7 +18,7 @@ class CartController {
             await methods.closeCart(user.username)
             return res.send('Compra finalizada con exito')
         } catch (error) {
-            console.log(`Tuvimos el siguiente error: ${error}`)
+            pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
 }

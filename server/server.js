@@ -7,8 +7,7 @@ const passport = require('passport')
 const path = require('path')
 const config = require('../config/index')
 const rootRouter = require('../routes/root') 
-const prodRouter = require('../routes/products') 
-const messageRouter = require('../routes/messages') 
+const prodRouter = require('../routes/products')
 const cartRouter = require('../routes/cart') 
 const testRouter = require('../routes/product-test')
 const cluster_mode = require('./cluster_mode')
@@ -20,7 +19,6 @@ class Server {
         this.port = config.dbConfig.port
         this.mainPath = '/'
         this.prodPath = '/api/products'
-        this.messagePath = '/api/message'
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
         this.cpus = config.dbConfig.cpus
