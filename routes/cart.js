@@ -1,9 +1,10 @@
 const { Router } = require('express')
+const cartController = require('../components/cart/controller/cart')
 
 const cartRouter = new Router()
 
-cartRouter.get('/', (req, res) => {
-    res.send(`Raiz del Carrito`)
-})
+cartRouter.get('/', cartController.bringCart)
+
+cartRouter.post('/purchase', cartController.endPurchase)
 
 module.exports = cartRouter

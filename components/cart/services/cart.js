@@ -10,14 +10,6 @@ class CartDatabase {
         this.client = CartDatabase.client
         this.collection = CartModel
     }
-    // async checkCart(username){
-    //     try {
-    //         const exists = await this.collection.exists({owner_name: username, active: true})
-    //         return exists
-    //     } catch (error) {
-    //         console.log(`Tuvimos este error ${error}`)
-    //     }
-    // }
     async createCart(username, product){
         try {
             await this.collection.create({'owner_name': username, 'active': true, 'products': [product]})
@@ -35,6 +27,24 @@ class CartDatabase {
             console.log(`carrito para el usuario ${username} actualizado con exito`)
         } catch (error) {
             console.log(`Tuvimos este error ${error}`)
+        }
+    }
+    async bringCart(username){
+        try {
+            const userCart = await this.collection.findOne({owner_name: username, active: true})
+            if(!userCart) return false
+            return userCart
+        } catch (error) {
+            console.log(`Tuvimos este error ${error}`)
+        }
+    }
+    async closeCart(username){
+        try {
+            const cartExists = await this.collection.exists({owner_name: username, active: true})
+            if(!cartExists) return console.log('El carrito ya esta cerrado')
+            await this.collection.updateOne({owner_name: username}, {active: false})
+        } catch (error) {
+            console.log(`Tuvimos este error: ${error}`)
         }
     }
 }

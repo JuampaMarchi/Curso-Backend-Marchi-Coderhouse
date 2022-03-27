@@ -6,13 +6,13 @@ const Cart = require('../components/cart/index')
 const rootRouter = new Router()
 
 rootRouter.get('/', (req, res, next) => {
-    if(req.session.user_name) return res.redirect('main')
+    if(req.session.passport) return res.redirect('main')
     res.render('log_in')
 })
 
 rootRouter.get('/main', middlewares.isAuth, (req, res, next) => {
     let user = req.user
-    let products = [{id: '1', name: 'producto 1', price: 100}, {id: '2', name: 'producto 2', price: 200}]
+    let products = [{id: '1', name: 'producto 1', price: 100}, {id: '2', name: 'producto 2', price: 200},{id: '3', name: 'producto 3', price: 300},{id: '4', name: 'producto 4', price: 400},{id: '5', name: 'producto 5', price: 500}]
     req.session.touch()
     res.render('main', {user, products})
 })

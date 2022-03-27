@@ -46,7 +46,7 @@ class Server {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                maxAge: 60000,
+                maxAge: 1200000,
             }
         }))
         this.app.use(passport.initialize())

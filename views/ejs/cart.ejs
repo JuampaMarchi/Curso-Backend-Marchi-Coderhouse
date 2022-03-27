@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
@@ -17,19 +17,6 @@
     box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
     padding: 50px;
     }
-    .button_cesar {
-        margin: 4%;
-        padding: 0.7rem;
-        font-weight: bold;
-        font-family: "quicksand", sans-serif;
-        border: none;
-        color: #ffffff;
-        background-color: #11373c;
-        transition: background 200ms ease-in, color 200ms ease-in;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 35%;
-    }
 </style>
 <body>
     <div class="contenedor_app">
@@ -41,7 +28,7 @@
             <div class="collapse navbar-collapse d-flex justify-content-xl-between" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="../">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Productos</a>
@@ -50,16 +37,13 @@
                         <a class="nav-link" href="#">Contacto</a>
                     </li>
                 </ul>
-                <div>
-                    <a class="btn btn-primary" href="/api/cart">Ver Carrito</a>
-                    <a class="btn btn-success" href="/log_out">Desloguearme</a>
-                </div>
+                <a class="btn btn-success" href="/log_out">Desloguearme</a>
             </div>
         </nav>
         <div class="formulario d-flex flex-column align-items-center">
-            <h1>Bienvenido <%= user.username %> </h1>
+            <h1>Carrito de <%= user.username %> </h1>
             <br>
-            <%- include('./partials/productos'); %>
+            <%- include('./partials/cart_items'); %>
             <br>
             
         </div>
