@@ -16,4 +16,9 @@ const db = {
     cors: process.env.CORS
 }
 
-module.exports = { db, dbConfig }
+const mailer = {
+    user: process.env.MAIL_USER,
+    password: process.env.MAIL_PASSWORD
+}
+
+module.exports = { db, dbConfig, mailer }

@@ -1,6 +1,7 @@
 const passport = require('passport')
-const { Strategy } = require('passport-local')
 const Users = require('../../components/users/index')
+const MailService = require('../nodemailer/nodemailer')
+const { Strategy } = require('passport-local')
 const { checkValue } = require('../bcrypt/index')
 
 const loginStrategy = () => {
@@ -30,6 +31,7 @@ const registerStrategy = () => {
             password
         }
         await Users.insert(user)
+        await MailService.registerAlert(user)
     
         return done(null, user)
     }))
