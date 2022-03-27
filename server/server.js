@@ -5,15 +5,14 @@ const MongoStore = require('connect-mongo')
 const session = require('express-session')
 const passport = require('passport')
 const path = require('path')
-const { Server: HttpServer } = require('http') 
 const config = require('../config/index')
-const Socket = require('../utils/socket/index')
-const { loginStrategy, registerStrategy, serialize, deserialize } = require('../utils/passport/strategies')
 const rootRouter = require('../routes/root') 
 const prodRouter = require('../routes/products') 
 const messageRouter = require('../routes/messages') 
 const cartRouter = require('../routes/cart') 
-const testRouter = require('../routes/product-test') 
+const testRouter = require('../routes/product-test')
+const cluster_mode = require('./cluster_mode')
+const { loginStrategy, registerStrategy, serialize, deserialize } = require('../utils/passport/strategies')
 
 class Server {
     constructor(){
@@ -24,6 +23,7 @@ class Server {
         this.messagePath = '/api/message'
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
+        this.cpus = config.dbConfig.cpus
         this.middlewares()
         this.session()
         this.passport()
@@ -69,12 +69,10 @@ class Server {
         this.app.set('views', path.join(__dirname, "../views", "ejs"))
         this.app.set('view engine', 'ejs')
     }
-    webSocket(){
-        const httpServer = new HttpServer(this.app)
-        const socket = new Socket(httpServer)
-        socket.init()
-        //socket.initProd()
-        httpServer.listen(this.port, ()=>{
+    initialize(){
+        if(config.dbConfig.mode === 'CLUSTER') return cluster_mode(this.app, this.cpus, this.port)
+
+        this.app.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)
         })
     }
