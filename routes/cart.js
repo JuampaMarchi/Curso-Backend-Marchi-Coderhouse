@@ -5,6 +5,8 @@ const cartRouter = new Router()
 
 cartRouter.get('/', cartController.bringCart)
 
+cartRouter.post('/addToCart', cartController.addToCart)
+
 cartRouter.post('/purchase', cartController.endPurchase)
 
 module.exports = cartRouter

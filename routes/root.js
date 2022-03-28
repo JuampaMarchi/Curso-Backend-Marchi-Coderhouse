@@ -1,7 +1,6 @@
 const passport = require('passport')
 const { Router } = require('express')
 const middlewares = require('../utils/middlewares/index')
-const Cart = require('../components/cart/index')
 
 const rootRouter = new Router()
 

@@ -1,5 +1,9 @@
 <br><br>
-
+<style>
+    .form-input {
+        width: 100px;
+    }
+</style>
 <div class="d-flex flex-column align-items-center justify-content-center mt-lg-5">
     <div class="d-flex flex-column align-items-center" style="width: auto; min-width: 80%">
         <h1 class="display-5">Listado de Productos</h1>
@@ -9,17 +13,21 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
                 <% for(item of products){ %>
-                    <tr>
-                        <th scope="row"><%= %></th>
-                        <td id="item<%=item.id%> "><%=item.name %></td>
-                        <td><%=item.price %></td>
-                        <td><button type="submit" class="btn btn-light">Agregar a Carrito</button></td>
-                    </tr>
+                    <form action="/api/cart/addToCart" method="post">
+                        <tr>
+                            <th scope="row"><%=item.id %></th>
+                            <td><input class="form-input" type="text" name="name" value="<%=item.name %>" readonly="true"></td>
+                            <td><input class="form-input" type="number" name="qty" value="1"></td>
+                            <td><input class="form-input" type="text" name="price" value="<%=item.price %>" readonly="true"></td>
+                            <td><input type="submit" value="Agregar a Carrito"></td>
+                        </tr>
+                    </form>
                 <%}%>
                 </tbody>
             </table>

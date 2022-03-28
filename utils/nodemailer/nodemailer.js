@@ -19,11 +19,10 @@ class MailService {
     }
     async orderAlert(data){
         try {
-            const itemLine = () => {
-                for (const item of data.products) {
-                    return `<li>Producto: ${item.name} - Cantidad: ${item.qty} - Precio: ${item.price}`
-                }
-            }
+            let items = ''
+            data.products.forEach(e => {
+                items += `<li>Producto: ${e.name} - Cantidad: ${e.qty} - Precio: ${e.price}</li><br>`
+            })
             const option = {
                 from: 'Admin',
                 to: mailer.user,
@@ -32,8 +31,9 @@ class MailService {
                 <div>
                     <p>Estimado cliente, gracias por su compra. Le enviamos aqui el detalle de su pedido</p>
                     <ul>
-                       ${itemLine()} 
+                       ${items} 
                     </ul>
+                    <p>Saludos</p>
                 </div>
                 `
             }
