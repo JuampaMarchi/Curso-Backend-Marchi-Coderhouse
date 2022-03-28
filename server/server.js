@@ -6,8 +6,7 @@ const session = require('express-session')
 const passport = require('passport')
 const path = require('path')
 const config = require('../config/index')
-const rootRouter = require('../routes/root') 
-const prodRouter = require('../routes/products')
+const rootRouter = require('../routes/root')
 const cartRouter = require('../routes/cart') 
 const testRouter = require('../routes/product-test')
 const cluster_mode = require('./cluster_mode')
@@ -18,7 +17,6 @@ class Server {
         this.app = express()
         this.port = config.dbConfig.port
         this.mainPath = '/'
-        this.prodPath = '/api/products'
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
         this.cpus = config.dbConfig.cpus
@@ -58,8 +56,6 @@ class Server {
     }
     routes(){
         this.app.use(this.mainPath, rootRouter)
-        this.app.use(this.prodPath, prodRouter)
-        this.app.use(this.messagePath, messageRouter)
         this.app.use(this.cartPath, cartRouter)
         this.app.use(this.testPath, testRouter)
     }

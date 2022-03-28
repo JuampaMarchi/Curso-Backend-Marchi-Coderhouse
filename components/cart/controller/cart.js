@@ -1,12 +1,13 @@
 const methods = require('../index')
 const pino = require('../../../utils/logger/pino')
+const MessageServer = require('../../../utils/messages/twilio')
+const MailService = require('../../../utils/nodemailer/nodemailer')
 
 class CartController {
     async bringCart(req, res){
         try {
             const user = req.user
             const cart = await methods.bringCart(user.username)
-            console.log('cart', cart)
             return res.render('cart', {user, cart})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -15,7 +16,10 @@ class CartController {
     async endPurchase(req, res){
         try {
             const user = req.user
-            await methods.closeCart(user.username)
+            const cart = await methods.bringCart(user.username)
+            //await methods.closeCart(user.username)
+            //MessageServer.sendMessage('+543516887790')
+            MailService.orderAlert(cart)
             return res.send('Compra finalizada con exito')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

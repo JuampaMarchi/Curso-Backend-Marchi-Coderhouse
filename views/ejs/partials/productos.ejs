@@ -1,15 +1,6 @@
 <br><br>
 
 <div class="d-flex flex-column align-items-center justify-content-center mt-lg-5">
-    <!-- <div id="form-container">
-        <form id="prod-form">
-            <div class="d-flex flex-column align-items-center">
-                <input id="name-input" type="text">
-                <input id="price-input" type="number">
-                <button id="send-button">Ingresar Producto</button>
-            </div>
-        </form>
-    </div> -->
     <div class="d-flex flex-column align-items-center" style="width: auto; min-width: 80%">
         <h1 class="display-5">Listado de Productos</h1>
         <% if (products.length > 0) { %>
@@ -24,8 +15,8 @@
                 <tbody id="table-body">
                 <% for(item of products){ %>
                     <tr>
-                        <th scope="row"><%=item.id %></th>
-                        <td><%=item.name %></td>
+                        <th scope="row"><%= %></th>
+                        <td id="item<%=item.id%> "><%=item.name %></td>
                         <td><%=item.price %></td>
                         <td><button type="submit" class="btn btn-light">Agregar a Carrito</button></td>
                     </tr>
@@ -37,39 +28,3 @@
         <% } %>
     </div>
 </div>
-<script>
-    let priceInput = document.getElementById('price-input')
-    let nameInput = document.getElementById('name-input')
-    let prodForm = document.getElementById('prod-form')
-    const appendItem = (itemId, itemName, itemPrice)=>{
-        const body = document.getElementById('table-body')
-        const tr = document.createElement('tr')
-        const th = document.createElement('th')
-        const nameTd = document.createElement('td')
-        const priceTd = document.createElement('td')
-        th.setAttribute('scope', 'row')
-        th.innerHTML = itemId
-        nameTd.innerHTML = itemName
-        priceTd.innerHTML = itemPrice
-        tr.appendChild(th)
-        tr.appendChild(nameTd)
-        tr.appendChild(priceTd)
-        body.appendChild(tr)
-    }
-    let socket = io()
-    socket.on('sendProd', data=>{
-        products = data
-    })
-    socket.on('sendToAll', data => {
-        console.log('data recibida')
-        appendItem(data.id, data.name, data.price)
-    })
-    prodForm.addEventListener('submit', e=>{
-        e.preventDefault()
-        const newProd = {
-            name: e.target[0].value,
-            price: parseInt(e.target[1].value)
-        }
-        socket.emit('loadProd', newProd)
-    })
-</script>

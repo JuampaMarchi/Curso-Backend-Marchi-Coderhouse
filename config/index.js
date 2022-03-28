@@ -16,7 +16,10 @@ const db = {
 
 const mailer = {
     user: process.env.MAIL_USER,
-    password: process.env.MAIL_PASSWORD
+    password: process.env.MAIL_PASSWORD,
+    twilio_SID: process.env.TWILIO_SID,
+    twilio_TOKEN: process.env.TWILIO_TOKEN,
+    twilio_sender: process.env.TWILIO_SENDER
 }
 
 module.exports = { db, dbConfig, mailer }
