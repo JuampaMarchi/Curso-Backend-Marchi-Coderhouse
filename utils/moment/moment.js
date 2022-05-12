@@ -4,7 +4,8 @@ const pino = require('../logger/pino')
 class Moment {
     async date(){
         try {
-            return moment().format('DD/MM/YYYY HH:mm:ss')
+            const newDate = moment().format('DD/MM/YYYY HH:mm:ss')
+            return newDate
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }

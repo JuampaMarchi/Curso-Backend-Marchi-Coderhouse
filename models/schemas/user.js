@@ -1,11 +1,14 @@
 const Joi = require('joi')
 
-let user_name = Joi.string()
+let username = Joi.string()
 let password = Joi.string()
+let email = Joi.string()
+
 
 const UserSchema = {
-    username: user_name.required(),
-    password: password.required()
+    username,
+    password,
+    email
 }
 
 module.exports = UserSchema

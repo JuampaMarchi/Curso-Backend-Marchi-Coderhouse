@@ -1,4 +1,4 @@
-const UserDatabase = require('./service/users')
+const UserDatabase = require('./services/users')
 
 const Users = new UserDatabase()
 

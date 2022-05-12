@@ -1,17 +1,17 @@
-const cpus = require('os').cpus()
 require('dotenv').config()
 
-
-const dbConfig = {
+const config = {
     dev: process.env.NOD_ENV !== 'production',
     port: process.env.PORT || 5000,
-    cpus: cpus.length,
-    mode: process.env.MODE || 'NORMAL'
+    cors: process.env.CORS,
+    authJWTService: process.env.JWT_ALGORITHM,
+    expireTimeToken: process.env.JWT_EXPIRES_IN,
+    algorithmToken: process.env.JWT_SECRET,
+    saltCrypt: process.env.SALT_ROUNDS
 }
 
 const db = {
     mongo_atlas: process.env.MONGO_ATLAS_URI,
-    cors: process.env.CORS
 }
 
 const mailer = {
@@ -22,4 +22,4 @@ const mailer = {
     twilio_sender: process.env.TWILIO_SENDER
 }
 
-module.exports = { db, dbConfig, mailer }
+module.exports = { db, config, mailer }

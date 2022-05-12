@@ -4,7 +4,7 @@ const pino = require("pino")({
             {
                 level: 'error',
                 target: 'pino/file',
-                options: { destination: './utils/logs/error.log', mkdir: true }
+                options: { destination: './utils/logger/logs/error.log', mkdir: true }
             },
             {
                 target: 'pino-pretty',

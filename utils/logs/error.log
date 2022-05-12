@@ -1,8 +1,0 @@
-{"level":50,"time":1648428411023,"pid":12988,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error: TypeError: Cannot read properties of undefined (reading 'forEach')"}
-{"level":50,"time":1648429442775,"pid":5304,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error: TypeError: Cannot read properties of undefined (reading 'forEach')"}
-{"level":50,"time":1648429576633,"pid":10500,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading 'username')"}
-{"level":50,"time":1648429603442,"pid":9448,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading 'username')"}
-{"level":50,"time":1648429697824,"pid":9448,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error: TypeError: Cannot read properties of undefined (reading 'forEach')"}
-{"level":50,"time":1648429729952,"pid":1080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error: TypeError: Cannot read properties of undefined (reading 'forEach')"}
-{"level":50,"time":1648486556474,"pid":11484,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: Cannot access 'data' before initialization"}
-{"level":50,"time":1648486593383,"pid":11484,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: Cannot access 'data' before initialization"}
