@@ -17,7 +17,7 @@ class UserDatabase {
             const response = await this.collection.findOne({username: name})
             return response
         } catch (error) {
-            pino.info(`Tuvimos el siguiente error: ${error}`)
+            pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
     async insert(user_data){
@@ -25,7 +25,7 @@ class UserDatabase {
             await this.collection.create({'username': user_data.username, 'password': encrypt(user_data.password)})
             pino.info(`Usuario ${user_data.username} creado con exito!`)
         } catch (error) {
-            pino.info(`Tuvimos el siguiente error: ${error}`)
+            pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
 }

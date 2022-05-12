@@ -9,7 +9,7 @@ const config = require('../config/index')
 const rootRouter = require('../routes/root')
 const cartRouter = require('../routes/cart') 
 const testRouter = require('../routes/product-test')
-const cluster_mode = require('./cluster_mode')
+const chatRouter = require('../routes/chatRoutes')
 const { loginStrategy, registerStrategy, serialize, deserialize } = require('../utils/passport/strategies')
 
 class Server {
@@ -19,6 +19,7 @@ class Server {
         this.mainPath = '/'
         this.cartPath = '/api/cart'
         this.testPath = '/api/products-test'
+        this.chatPath = '/api/chat'
         this.cpus = config.dbConfig.cpus
         this.middlewares()
         this.session()
@@ -58,14 +59,13 @@ class Server {
         this.app.use(this.mainPath, rootRouter)
         this.app.use(this.cartPath, cartRouter)
         this.app.use(this.testPath, testRouter)
+        this.app.use(this.chatPath, chatRouter)
     }
     viewEngine(){
         this.app.set('views', path.join(__dirname, "../views", "ejs"))
         this.app.set('view engine', 'ejs')
     }
     initialize(){
-        if(config.dbConfig.mode === 'CLUSTER') return cluster_mode(this.app, this.cpus, this.port)
-
         this.app.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)
         })
