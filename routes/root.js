@@ -15,10 +15,7 @@ rootRouter.get('/main', (req, res, next) => {
 rootRouter.get('/log_out', (req, res, next) => {
     let user = 'Usuario'
     if(!user) return res.send('Sesion Expirada')
-    req.session.destroy( err => {
-        if(err) return res.json({Erro: JSON.stringify(err)})
-        res.render('logout', {user})
-    })
+
 })
 
 rootRouter.get('/register', (req, res, next) => {

@@ -6,6 +6,7 @@ const config = require('../config/index')
 const rootRouter = require('../routes/root')
 const cartRouter = require('../routes/cart')
 const chatRouter = require('../routes/chatRoutes')
+const serverRoutes = require('../routes/index')
 
 class Server {
     constructor(){
@@ -25,6 +26,7 @@ class Server {
         this.app.use(cookieParser())
     }
     routes(){
+        serverRoutes(this.app)
         this.app.use(this.mainPath, rootRouter)
         this.app.use(this.cartPath, cartRouter)
         this.app.use(this.chatPath, chatRouter)

@@ -16,6 +16,7 @@ const db = {
 
 const mailer = {
     user: process.env.MAIL_USER,
+    admin_user: process.env.MAIL_ADMIN_USER,
     password: process.env.MAIL_PASSWORD,
     twilio_SID: process.env.TWILIO_SID,
     twilio_TOKEN: process.env.TWILIO_TOKEN,

@@ -2,6 +2,13 @@ const AuthServices = require('../services/authService')
 const pino = require('../../../utils/logger/pino')
 
 class AuthController {
+    async login(req, res){
+        try {
+            
+        } catch (error) {
+            pino.error(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
     async loginController(req, res){
         try {
             const { username, password } = req.body
@@ -23,3 +30,5 @@ class AuthController {
         }
     }
 }
+
+module.exports = new AuthController()

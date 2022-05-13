@@ -11,9 +11,9 @@ class CartDatabase {
         this.client = CartDatabase.client
         this.collection = CartModel
     }
-    async createCart(username, product){
+    async createCart(username, email, product){
         try {
-            await this.collection.create({'owner_name': username, 'active': true, 'products': [product]})
+            await this.collection.create({'owner_name': username, 'email': email, 'active': true, 'products': [product]})
             pino.info(`carrito para el usuario ${username} creado con exito`)
         } catch (error) {
             pino.error(`Tuvimos este error ${error}`)
@@ -48,6 +48,25 @@ class CartDatabase {
             pino.error(`Tuvimos este error ${error}`)
         }
     }
+    async update(id, data){
+        try {
+            const cartExists = await this.collection.exists({_id: id, active: true})
+            if(!cartExists) throw new Error('El carrito esta cerrado o no existe')
+            await this.collection.updateOne({_id: id}, {products: data})
+        } catch (error) {
+            pino.error(`Tuvimos este error ${error}`)
+        }
+    }
+    async delete(id){
+        try {
+            const cartExists = await this.collection.exists({_id: id, active: true})
+            if(!cartExists) throw new Error('El carrito esta cerrado o no existe')
+            await this.collection.daleteOne({_id: id})
+        } catch (error) {
+            pino.error(`Tuvimos este error ${error}`)
+        }
+    }
+
 }
 
 module.exports = CartDatabase

@@ -15,7 +15,7 @@ class JWT {
     }
     async verify(token){
         try {
-            return await jwt.verify(token, {
+            return await jwt.verify(token, config.authJWTService, {
                 algorithm: [config.algorithmToken]
             })
         } catch (error) {
@@ -24,7 +24,7 @@ class JWT {
     }
     async decode(token){
         try {
-            return await jwt.decode(token, {
+            return await jwt.decode(token, config.authJWTService, {
                 algorithm: [config.algorithmToken]
             })
         } catch (error) {
