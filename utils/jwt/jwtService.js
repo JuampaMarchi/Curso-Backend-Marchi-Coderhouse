@@ -5,6 +5,7 @@ const { config } = require('../../config/index')
 class JWT {
     async generate(payloadTokenData){
         try {
+            console.l
             return await jwt.sign(payloadTokenData, config.authJWTService, {
                 expiresIn: config.expireTimeToken * 1000 || 600000,
                 algorithm: config.algorithmToken || 'HS256'

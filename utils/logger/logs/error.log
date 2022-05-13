@@ -4,3 +4,6 @@
 {"level":50,"time":1652451508986,"pid":10908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: UserService.findByName is not a function"}
 {"level":50,"time":1652451691403,"pid":5180,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: exists is not defined"}
 {"level":50,"time":1652451720730,"pid":7124,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}
+{"level":50,"time":1652470493217,"pid":4732,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}
+{"level":50,"time":1652470570293,"pid":14328,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}
+{"level":50,"time":1652474122228,"pid":9540,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: name argument is required to req.get"}

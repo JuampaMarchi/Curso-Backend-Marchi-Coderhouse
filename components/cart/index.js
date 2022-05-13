@@ -1,5 +1,10 @@
-const CartDatabase = require('./services/cart')
+const cartController = require('./controllers/cartController')
+const { Router } = require('express')
 
-const Cart = new CartDatabase()
+const CartRouter = new Router()
 
-module.exports = Cart
+module.exports = app => {
+    app.use('/cart', CartRouter)
+
+    CartRouter.get('/', (req, res) => res.send('Raiz del carrito'))
+}

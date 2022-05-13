@@ -4,9 +4,9 @@ const config = {
     dev: process.env.NOD_ENV !== 'production',
     port: process.env.PORT || 5000,
     cors: process.env.CORS,
-    authJWTService: process.env.JWT_ALGORITHM,
+    authJWTService: process.env.JWT_SECRET,
     expireTimeToken: process.env.JWT_EXPIRES_IN,
-    algorithmToken: process.env.JWT_SECRET,
+    algorithmToken: process.env.JWT_ALGORITHM,
     saltCrypt: process.env.SALT_ROUNDS
 }
 

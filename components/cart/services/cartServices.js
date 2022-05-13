@@ -2,13 +2,13 @@ const CartModel = require('../../../models/cart-model')
 const pino = require('../../../utils/logger/pino')
 const { CRUD, connection } = require('../../../config/db')
 
-class CartDatabase {
+class CartServices {
     static client
     constructor(){
-        if(CartDatabase.client) return CartDatabase.client
+        if(CartServices.client) return CartServices.client
         CRUD()
-        CartDatabase.client = connection
-        this.client = CartDatabase.client
+        CartServices.client = connection
+        this.client = CartServices.client
         this.collection = CartModel
     }
     async createCart(username, email, product){
@@ -69,4 +69,4 @@ class CartDatabase {
 
 }
 
-module.exports = CartDatabase
+module.exports = new CartServices()
