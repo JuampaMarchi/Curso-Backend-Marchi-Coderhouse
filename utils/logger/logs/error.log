@@ -1,1 +1,6 @@
 {"level":50,"time":1652395725004,"pid":3552,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading 'username')"}
+{"level":50,"time":1652451272404,"pid":10908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading 'isRevoked')"}
+{"level":50,"time":1652451499212,"pid":10908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: UserService.findByName is not a function"}
+{"level":50,"time":1652451508986,"pid":10908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: UserService.findByName is not a function"}
+{"level":50,"time":1652451691403,"pid":5180,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: exists is not defined"}
+{"level":50,"time":1652451720730,"pid":7124,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}

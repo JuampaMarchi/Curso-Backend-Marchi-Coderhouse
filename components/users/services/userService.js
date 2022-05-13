@@ -12,9 +12,11 @@ class UserDatabase {
         this.client = UserDatabase.client
         this.collection = UserModel
     }
-    async insert(user_data){
+    async create(user_data){
         try {
-            const user = {'username': user_data.username, 'password': Bcrypt.encrypt(user_data.password), 'email': user_data.email}
+            const pass = await Bcrypt.encrypt(user_data.password)
+            const user = {'username': user_data.username, 'password': pass, 'email': user_data.email, 'role': 'user'}
+            console.log(user)
             await this.collection.create(user)
             pino.info(`Usuario ${user_data.username} creado con exito!`)
             return user

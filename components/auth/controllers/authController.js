@@ -4,7 +4,7 @@ const pino = require('../../../utils/logger/pino')
 class AuthController {
     async login(req, res){
         try {
-            
+            res.status(200).render('log_in')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }

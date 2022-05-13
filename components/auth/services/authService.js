@@ -1,19 +1,19 @@
 const pino = require('../../../utils/logger/pino')
 const JWT = require('../../../utils/jwt/jwtService')
 const Bcrypt = require('../../../utils/bcrypt/index')
-const UserService = require('../../users/index')
+const UserService = require('../../users/services/userService')
 const { config } = require('../../../config')
 
 class AuthService {
     async login(username, password){
         try {
-            const exists = await UserService.findByName(username)
-            if(!exists) throw new Error('Credenciales invalidas')
-            const succes = await Bcrypt.compare(password, exists.password)
+            const user = await UserService.findByName(username)
+            if(!user) throw new Error('Credenciales invalidas')
+            const succes = await Bcrypt.compare(password, user.password)
             if(!succes) throw new Error('Credenciales invalidas')
-            const token = await JWT.generate({id: exists._id})
+            const token = await JWT.generate({id: user._id, name: user.name, email: user.email})
             const response = {
-                exists,
+                user,
                 token,
                 type: 'Bearer',
                 expires_in: config.expireTimeToken
