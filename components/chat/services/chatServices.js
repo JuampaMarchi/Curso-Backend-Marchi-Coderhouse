@@ -1,4 +1,4 @@
-const ChatModel = require('../../../models/chat')
+const ChatModel = require('../../../models/chat-model')
 const pino = require('../../../utils/logger/pino')
 const moment = require('../../../utils/moment/moment')
 const { CRUD, connection } = require('../../../config/db')

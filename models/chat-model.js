@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const chatSchema = require('./schemas/chat')
+const chatSchema = require('./schemas/chat-schema')
 
 const chatSchemaModel = new mongoose.Schema(chatSchema)
 

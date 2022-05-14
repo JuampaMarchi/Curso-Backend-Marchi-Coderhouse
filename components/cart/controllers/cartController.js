@@ -6,9 +6,9 @@ const jwtServices = require('../../../utils/jwt/jwtService')
 class CartController {
     async bringCart(req, res){
         try {
-            
-            const user = req.user
-            const cart = await CartServices.bringCart(user.username)
+            const token = req.cookies.token
+            const payload = jwtServices.verify(token)
+            const cart = await CartServices.bringCart(payload.name)
             return res.status(200).render('cart', {user, cart})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

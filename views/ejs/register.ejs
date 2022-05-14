@@ -17,37 +17,41 @@
     box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
     padding: 50px;
     }
-    .button_cesar {
-        margin: 4%;
-        padding: 0.7rem;
-        font-weight: bold;
-        font-family: "quicksand", sans-serif;
-        border: none;
-        color: #ffffff;
-        background-color: #11373c;
-        transition: background 200ms ease-in, color 200ms ease-in;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 35%;
-    }
 </style>
+<script>
+    const checkPass = () => {
+        let pass = document.getElementById('password').value
+        let pass_2 = document.getElementById('repeat_password').value
+        let message = document.getElementById('message')
+        let button = document.getElementById('register')
+
+        if(pass == pass_2) {
+            message.style.color = 'green'
+            message.innerHTML = 'Las contraseñas coinciden'
+            button.disabled = false
+        } else {
+            message.style.color = 'red'
+            message.innerHTML = 'Las contraseñas no coinciden'
+        }
+    }
+</script>
 <body>
     <div class="contenedor_app">
         <div class="formulario">
             <h1>Registro</h1>
             <br>
-            <form class="form" action="/register" method="post" role="form" autocomplete="off">
+            <form class="form" action="/create" method="post" role="form" autocomplete="off">
 
             <div class="form-group">
-                <input id="nombre" name='username' placeholder="usuario" class="form-control" type="text" required>
+                <input id="username" name='username' placeholder="usuario" class="form-control" type="text" required>
             </div>
 
             <div class="form-group">
-                <input id="nombre" name='fullname' placeholder="nombre completo" class="form-control" type="text" required>
+                <input id="fullname" name='fullname' placeholder="nombre completo" class="form-control" type="text" required>
             </div>
 
             <div class="form-group">
-                <input id="direccion" name='email' placeholder="e-mail" class="form-control" type="text" required>
+                <input id="email" name='email' placeholder="e-mail" class="form-control" type="text" required>
             </div>
     
     
@@ -56,11 +60,11 @@
             </div>
 
             <div class="form-group">
-                <input id="password" name='repeat_password' placeholder="repeat password" class="form-control" type="password" required>
+                <input id="repeat_password" name='repeat_password' placeholder="repeat password" class="form-control" type="password" onkeyup="checkPass()" required>
             </div>
-
+            <span id="message"></span>
             <div class="form-group">
-                <input class="btn btn-success my-3" type="submit" value="Registrarse">
+                <input id="register" class="btn btn-success my-3" type="submit" value="Registrarse" disabled>
             </div>
             </form>
             <hr>

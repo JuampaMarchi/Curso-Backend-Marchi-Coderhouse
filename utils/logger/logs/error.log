@@ -7,3 +7,19 @@
 {"level":50,"time":1652470493217,"pid":4732,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}
 {"level":50,"time":1652470570293,"pid":14328,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: \"algorithm\" must be a valid string enum value"}
 {"level":50,"time":1652474122228,"pid":9540,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: name argument is required to req.get"}
+{"level":50,"time":1652481944630,"pid":13372,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: sessionStorage is not defined"}
+{"level":50,"time":1652533977470,"pid":11396,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Credenciales invalidas"}
+{"level":50,"time":1652533977471,"pid":11396,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading 'token')"}
+{"level":50,"time":1652535394150,"pid":10764,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652535538155,"pid":1920,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652535559298,"pid":13884,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652535736300,"pid":12520,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652535796302,"pid":8792,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652535892749,"pid":13132,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652537491656,"pid":2460,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652537909147,"pid":13632,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: userServices.findOne is not a function"}
+{"level":50,"time":1652537987609,"pid":11684,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: userServices.findOne is not a function"}
+{"level":50,"time":1652538055069,"pid":7164,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: userServices.findOne is not a function"}
+{"level":50,"time":1652538101769,"pid":10892,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652538139277,"pid":8900,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652538154537,"pid":1632,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}

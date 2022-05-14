@@ -1,4 +1,4 @@
-const UserModel  = require('../../../models/user')
+const UserModel  = require('../../../models/user-model')
 const pino = require('../../../utils/logger/pino')
 const { CRUD, connection } = require('../../../config/db')
 const Bcrypt = require('../../../utils/bcrypt/index')
@@ -15,7 +15,7 @@ class UserDatabase {
     async create(user_data){
         try {
             const pass = await Bcrypt.encrypt(user_data.password)
-            const user = {'username': user_data.username, 'password': pass, 'email': user_data.email, 'role': 'user'}
+            const user = {'username': user_data.username, "fullname": user_data.fullname, 'password': pass, 'email': user_data.email, 'role': 'user'}
             console.log(user)
             await this.collection.create(user)
             pino.info(`Usuario ${user_data.username} creado con exito!`)

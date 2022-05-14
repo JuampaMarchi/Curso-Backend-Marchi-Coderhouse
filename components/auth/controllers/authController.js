@@ -11,22 +11,13 @@ class AuthController {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    //Vista para el registro
-    async register(req, res){
-        try {
-            res.status(200).render('register')
-        } catch (error) {
-            pino.error(`Tuvimos el siguiente error: ${error}`)
-        }
-    }
     //Controlador de log in
     async loginController(req, res){
         try {
             const { username, password } = req.body
             if(!username || !password) throw new Error('Falta ingresar algun datos!')
             const response = await AuthServices.login(username, password);
-            sessionStorage.setItem('token', response.token)
-            res.status(200).json(response)
+            res.status(200).cookie('token', response.token, {maxAge: 3600000}).json(response)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }

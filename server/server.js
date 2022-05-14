@@ -3,16 +3,12 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 const config = require('../config/index')
-const rootRouter = require('../routes/root')
-const chatRouter = require('../routes/chatRoutes')
 const serverRoutes = require('../routes/index')
 
 class Server {
     constructor(){
         this.app = express()
         this.port = config.config.port
-        this.mainPath = '/'
-        this.chatPath = '/api/chat'
         this.middlewares()
         this.routes()
         this.viewEngine()
@@ -25,8 +21,6 @@ class Server {
     }
     routes(){
         serverRoutes(this.app)
-        this.app.use(this.mainPath, rootRouter)
-        this.app.use(this.chatPath, chatRouter)
     }
     viewEngine(){
         this.app.set('views', path.join(__dirname, "../views", "ejs"))

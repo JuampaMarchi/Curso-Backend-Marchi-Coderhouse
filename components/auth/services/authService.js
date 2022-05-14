@@ -11,7 +11,7 @@ class AuthService {
             if(!user) throw new Error('Credenciales invalidas')
             const succes = await Bcrypt.compare(password, user.password)
             if(!succes) throw new Error('Credenciales invalidas')
-            const token = await JWT.generate({id: user._id, name: user.name, email: user.email, role: user.role})     //Carga de datos de usuario en el payload
+            const token = await JWT.generate({id: user._id, name: user.username, email: user.email, role: user.role})     //Carga de datos de usuario en el payload
             const response = {
                 user,
                 token,

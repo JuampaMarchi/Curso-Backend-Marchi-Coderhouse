@@ -7,6 +7,7 @@ module.exports = app => {
     app.use('/auth', AuthRouter)
 
     AuthRouter.get('/', AuthController.login)
+    //AuthRouter.get('/register', AuthController.register)
     AuthRouter.post('/', AuthController.loginController)
     AuthRouter.post('/verifytoken', AuthController.verifyTokenController)
 }
