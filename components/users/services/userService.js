@@ -12,6 +12,7 @@ class UserDatabase {
         this.client = UserDatabase.client
         this.collection = UserModel
     }
+    //Crear Usuario
     async create(user_data){
         try {
             const pass = await Bcrypt.encrypt(user_data.password)
@@ -24,6 +25,7 @@ class UserDatabase {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    //Traer todos los usuarios
     async findAll(){
         try {
             const response = await this.collection.find({})
@@ -32,6 +34,7 @@ class UserDatabase {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    //Encontrar usuario por nombre de usuario
     async findByName(name){
         try {
             const response = await this.collection.findOne({username: name})
@@ -40,6 +43,7 @@ class UserDatabase {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    //Encontrar usuario por id 
     async findById(id){
         try {
             const response = await this.collection.findById({_id: id})
@@ -48,6 +52,7 @@ class UserDatabase {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    //Actualizar usuario
     async update(id, data){
         try {
             const response = await this.collection.findById({_id: id})
@@ -59,6 +64,7 @@ class UserDatabase {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
+    //Borrar usuario
     async delete(id){
         try {
             const response = await this.collection.findById({_id: id})

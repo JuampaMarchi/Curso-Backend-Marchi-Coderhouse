@@ -11,9 +11,9 @@ class CartServices {
         this.client = CartServices.client
         this.collection = CartModel
     }
-    async createCart(username, email, product){
+    async createCart(data, product){
         try {
-            await this.collection.create({'owner_name': username, 'email': email, 'active': true, 'products': [product]})
+            await this.collection.create({'owner_name': data.name, 'email': data.email, 'active': true, 'products': [product], total: product.price * product.qty})
             pino.info(`carrito para el usuario ${username} creado con exito`)
         } catch (error) {
             pino.error(`Tuvimos este error ${error}`)
@@ -21,10 +21,12 @@ class CartServices {
     }
     async addToCart(username, product){
         try {
-            const cartExists = await this.collection.exists({owner_name: username, active: true})
-            if(!cartExists) return this.createCart(username, product)
+            const cart = await this.collection.find({owner_name: username, active: true})
+            if(!cart) return this.createCart(username, product)
             pino.info('ya existe un carrito activo para este usuario, agregando producto al carrito activo')
+            const newTotal = cart.products.reduce((acum, current) => acum + current.price * current.qty, 0)
             await this.collection.updateOne({owner_name: username},{$push: {'products': product}})
+            await this.collection.updateOne({owner_name: username},{total: newTotal})
             pino.info(`carrito para el usuario ${username} actualizado con exito`)
         } catch (error) {
             pino.error(`Tuvimos este error ${error}`)
@@ -42,15 +44,15 @@ class CartServices {
     async closeCart(username){
         try {
             const cartExists = await this.collection.exists({owner_name: username, active: true})
-            if(!cartExists) return console.log('El carrito ya esta cerrado')
+            if(!cartExists) throw new Error('El carrito ya esta cerrado')
             await this.collection.updateOne({owner_name: username}, {active: false})
         } catch (error) {
             pino.error(`Tuvimos este error ${error}`)
         }
     }
-    async update(id, data){
+    async update(username, data){
         try {
-            const cartExists = await this.collection.exists({_id: id, active: true})
+            const cartExists = await this.collection.exists({owner_name: username, active: true})
             if(!cartExists) throw new Error('El carrito esta cerrado o no existe')
             await this.collection.updateOne({_id: id}, {products: data})
         } catch (error) {

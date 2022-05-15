@@ -4,7 +4,7 @@ const Bcrypt = require('../../../utils/bcrypt/index')
 const UserService = require('../../users/services/userService')
 const { config } = require('../../../config')
 
-class AuthService {
+class Auth {
     async login(username, password){
         try {
             const user = await UserService.findByName(username) 
@@ -38,4 +38,4 @@ class AuthService {
     }
 }
 
-module.exports = new AuthService()
+module.exports = new Auth()

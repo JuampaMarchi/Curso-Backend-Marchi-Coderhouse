@@ -58,9 +58,9 @@
             </div>
         </nav>
         <div class="formulario d-flex flex-column align-items-center">
-            <h1>Bienvenido <%= user.username %> </h1>
+            <h1>Bienvenido <%= payload.name %> </h1>
             <br>
-            <%- include('./partials/productos'); %>
+            <%- include('./partials/product_list'); %>
             <br>
             
         </div>

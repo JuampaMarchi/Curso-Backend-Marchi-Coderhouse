@@ -41,7 +41,7 @@
             </div>
         </nav>
         <div class="formulario d-flex flex-column align-items-center">
-            <h1>Carrito de <%= user.username %> </h1>
+            <h1>Carrito de <%= payload.name %> </h1>
             <br>
             <%- include('./partials/cart_items'); %>
             <br>

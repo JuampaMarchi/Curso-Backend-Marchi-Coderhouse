@@ -23,3 +23,5 @@
 {"level":50,"time":1652538101769,"pid":10892,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
 {"level":50,"time":1652538139277,"pid":8900,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
 {"level":50,"time":1652538154537,"pid":1632,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
+{"level":50,"time":1652563365611,"pid":14216,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}
+{"level":50,"time":1652563394795,"pid":12732,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}

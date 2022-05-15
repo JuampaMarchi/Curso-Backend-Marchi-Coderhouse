@@ -1,90 +1,100 @@
-const userServices = require('../services/userService')
+const productServices = require('../services/productServices')
 const pino = require('../../../utils/logger/pino')
-const mailer = require('../../../utils/nodemailer/nodemailer')
 const authServices = require('../../auth/services/authService')
 
-class UserController {
-    //Listar todos los usuarios
-    async get(req, res){
-        try {
-            const token = req.cookies.token
-            const payload = await authServices.verifyToken(token)
-            if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
-            const response = await userServices.findAll({})
-            res.status(200).json(response)
-        } catch (error) {
-            pino.error(`Tuvimos el siguiente error: ${error}`)
-            res.status(400).render('error')
-        }
-    }
-    //Retorna datos de usuario con id seleccionado
-    async getOne(req, res){
-        try {
-            const token = req.cookies.token
-            const payload = await authServices.verifyToken(token)
-            if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
-            const { id } = req.params
-            const response = await userServices.findById(id)
-            res.status(200).json(response)
-        } catch (error) {
-            pino.error(`Tuvimos el siguiente error: ${error}`)
-            res.status(400).render('error')
-        }
-    }
-    //Muestra datos de usuario actual
-    async getCurrent(req, res){
+class Product {
+    //Controlador que retorna el listado de productos
+    async getAll(req, res){
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
             if(!payload) return res.status(401).render('error-auth')
-            const response = await userServices.findOne(payload.id)
-            res.status(200).json(response)
+            const products = await productServices.getAll()
+            res.status(200).json(products)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
     }
-    //Vista para el registro
-    async register(req, res){
+    //Controlador que retorna una vista con listado de productos
+    async getAllView(req, res){
         try {
-            res.status(200).render('register')
+            const token = req.cookies.token
+            const payload = await authServices.verifyToken(token)
+            if(!payload) return res.status(401).render('error-auth')
+            const products = await productServices.getAll()
+            res.status(200).render('products', {payload, products})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
     }
-    //Funcion de registro
+    //Controlador que retorna el producto solicitado por id
+    async getOne(req, res){
+        try {
+            const token = req.cookies.token
+            const payload = await authServices.verifyToken(token)
+            if(!payload) return res.status(401).render('error-auth')
+            const { id } = req.params
+            const products = await productServices.getOne(id)
+            res.status(200).render('products', {payload, products})
+        } catch (error) {
+            pino.error(`Tuvimos el siguiente error: ${error}`)
+            res.status(400).render('error')
+        }
+    }
+    //Controlador que retorna una vista con el producto solicitado por id
+    async getOneView(req, res){
+        try {
+            const token = req.cookies.token
+            const payload = await authServices.verifyToken(token)
+            if(!payload) return res.status(401).render('error-auth')
+            const { id } = req.params
+            const products = await productServices.getOne(id)
+            res.status(200).render('products', {payload, products})
+        } catch (error) {
+            pino.error(`Tuvimos el siguiente error: ${error}`)
+            res.status(400).render('error')
+        }
+    }
+    //Controlador encargado de ingresar productos a la base de datos
     async create(req, res){
         try {
-            const response = await userServices.create(req.body)
-            mailer.registerAlert()
-            mailer.registerAlertAdmin()
-            res.status(200).json(response)
+            const token = req.cookies.token
+            const payload = await authServices.verifyToken(token)
+            if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
+            const data = req.body
+            await productServices.create(data)
+            res.status(200).json(data)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
     }
+    //Controlador encargado de ingresar productos a la base de datos
     async update(req, res){
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
             if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
             const { id } = req.params
-            const response = await userServices.update(id, req.body)
-            res.status(200).json(response)
+            const data = req.body
+            await productServices.update(id, data)
+            res.status(200).json(data)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
-    }async delete(req, res){
+    }
+    //Controlador encargado de ingresar productos a la base de datos
+    async delete(req, res){
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
             if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
             const { id } = req.params
-            const response = await userServices.delete(id)
-            res.status(200).json(response)
+            await productServices.delete(id)
+            res.status(200).json(data)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
@@ -92,4 +102,4 @@ class UserController {
     }
 }
 
-module.exports = new UserController()
+module.exports = new Product

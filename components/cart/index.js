@@ -6,5 +6,8 @@ const CartRouter = new Router()
 module.exports = app => {
     app.use('/cart', CartRouter)
 
-    CartRouter.get('/', (req, res) => res.send('Raiz del carrito'))
+    CartRouter.get('/', cartController.bringCart)
+    CartRouter.post('/add', cartController.addToCart)
+    CartRouter.put('/:id', cartController.update)
+    CartRouter.delete('/:id', cartController.delete)
 }
