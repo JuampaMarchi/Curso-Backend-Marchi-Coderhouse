@@ -27,3 +27,19 @@
 {"level":50,"time":1652563394795,"pid":12732,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}
 {"level":50,"time":1652578472711,"pid":13908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: authServices is not defined"}
 {"level":50,"time":1652578478960,"pid":13908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: authServices is not defined"}
+{"level":50,"time":1652626313794,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652626313795,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652626332254,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652626332254,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652626509026,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"url\" (type string) at path \"_id\" for model \"products\""}
+{"level":50,"time":1652626755534,"pid":11080,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"url\" (type string) at path \"_id\" for model \"products\""}
+{"level":50,"time":1652630140866,"pid":3196,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652630140867,"pid":3196,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652630143133,"pid":3196,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652630143133,"pid":3196,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652633035615,"pid":6680,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error TypeError: Cannot read properties of undefined (reading 'reduce')"}
+{"level":50,"time":1652633266579,"pid":10748,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error TypeError: Cannot read properties of undefined (reading 'reduce')"}
+{"level":50,"time":1652633981576,"pid":9456,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: newTotal is not defined"}
+{"level":50,"time":1652634007879,"pid":4024,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: newTotal is not defined"}
+{"level":50,"time":1652635210472,"pid":5612,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652635210473,"pid":5612,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}

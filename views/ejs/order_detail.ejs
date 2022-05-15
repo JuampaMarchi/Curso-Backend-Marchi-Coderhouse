@@ -43,8 +43,39 @@
         <div class="formulario d-flex flex-column align-items-center">
             <h1>Ordenes de <%= payload.name %> </h1>
             <br>
-            
-            
+            <div class="d-flex flex-column align-items-center justify-content-center mt-lg-5">
+                <% if (order) { %>
+                <form action="/cart/purchase" method="post">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (const item of order.products){ %>
+                                <tr>
+                                    <th scope="row"><%=item.name %></th>
+                                    <td><%=item.price %> </td>
+                                    <td><%=item.qty %> </td>
+                                    <td><%= item.qty * item.price %> </td>
+                                </tr>
+                            <% } %>
+                                <tr>
+                                    <th scope="row">Total</th>
+                                    <td colspan="3" style="align-items: center;"><%= order.total %> </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" type="submit">Generar Orden</button>
+                </form>
+                <% } else { %>
+                    <h1 style="background-color: grey;">No hay nada para mostrar aqui</h1>
+                <% } %> 
+            </div>
         </div>
     </div>
 </body>

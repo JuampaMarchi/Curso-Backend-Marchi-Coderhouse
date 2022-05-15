@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<style>
+    .contenedor_app{
+    max-width: 700px;
+    width: 100%;
+    margin: 90px auto 0px;
+    box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
+    padding: 50px;
+    }
+</style>
+<body>
+    <div class="contenedor_app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-xl-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../">Inicio<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+                <a class="btn btn-success" href="/logout">Desloguearme</a>
+            </div>
+        </nav>
+        <div class="formulario d-flex flex-column align-items-center">
+            <h1>Usuario: <%= payload.name %> </h1>
+            <br>
+            <div class="d-flex flex-column align-items-center justify-content-center mt-lg-5">
+                <% if (product) { %>
+                <form action="/cart/add" method="post">
+                    <img src="<%= product.url %>"/>
+                    <h1>Titulo: <input  type="text" name="name" value="<%= product.product_name %>" readonly="true"></h1>
+                    <h2>Genero: <%= product.category %></h2>
+                    <p>Descripcion: <%= product.description %></p>
+                    <p>Precio: <input type="number" name="price" value="<%= product.price %>" readonly></p>
+                    <p>Cantidad: <input type="number" name="qty" value="1"></p>
+                    <input type="submit" value="Agregar a Carrito">
+                </form>
+                <% } else { %>
+                    <h1 style="background-color: grey;">No hay nada para mostrar aqui</h1>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

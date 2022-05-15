@@ -36,8 +36,8 @@ class Product {
             const payload = await authServices.verifyToken(token)
             if(!payload) return res.status(401).render('error-auth')
             const { id } = req.params
-            const products = await productServices.getOne(id)
-            res.status(200).render('products', {payload, products})
+            const product = await productServices.getOne(id)
+            res.status(200).render('product_detail', {payload, product})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')

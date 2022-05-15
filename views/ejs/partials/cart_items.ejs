@@ -15,10 +15,11 @@
             <tbody>
                 <% for (const item of cart.products){ %>
                     <tr>
-                        <th scope="row"><%=item.name %></th>
-                        <td><%=item.price %> </td>
-                        <td><%=item.qty %> </td>
-                        <td><%= item.qty * item.price %> </td>
+                        <th scope="row"><input class="form-input" type="text" name="name" value="<%=item.name %>" readonly></th>
+                        <td><input class="form-input" type="text" name="price" style="width: 58px;" value="<%=item.price %>" readonly></td>
+                        <td><input class="form-input" type="number" name="qty" style="width: 48px;" value="1"></td>
+                        <td><input class="form-input" type="number" name="total" style="width: 68px;" value="<%= item.qty * item.price %>"></td>
+                        <td><button class="btn btn-primary" type="submit" formaction="/cart/update">Actualizar Cantidades</button></td>
                     </tr>
                 <% } %>
                     <tr>

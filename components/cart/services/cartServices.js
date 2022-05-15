@@ -24,12 +24,13 @@ class CartServices {
             const cart = await this.collection.find({owner_name: username, active: true})
             if(!cart) return this.createCart(username, product)
             pino.info('ya existe un carrito activo para este usuario, agregando producto al carrito activo')
-            const newTotal = cart.products.reduce((acum, current) => acum + current.price * current.qty, 0)
-            await this.collection.updateOne({owner_name: username},{$push: {'products': product}})
-            await this.collection.updateOne({owner_name: username},{total: newTotal})
+            cart[0].products.push(product)
+            cart[0].total = cart[0].products.reduce((acum, current) => acum + current.price * current.qty, 0)
+            console.log(cart[0].total)
+            await this.collection.updateOne({owner_name: username},cart[0])
             pino.info(`carrito para el usuario ${username} actualizado con exito`)
         } catch (error) {
-            pino.error(`Tuvimos este error ${error}`)
+            return pino.error(`Tuvimos este error ${error}`)
         }
     }
     async bringCart(username){

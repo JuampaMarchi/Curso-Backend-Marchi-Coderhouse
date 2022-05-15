@@ -11,8 +11,7 @@ class MailService {
                 subject: 'Nueva Alta',
                 text: `El usuario ${data.username} se ha registrado en la plataforma`
             }
-            const response = await transporter.sendMail(option)
-            pino.info(response)
+            return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
@@ -25,8 +24,7 @@ class MailService {
                 subject: 'Nueva Alta',
                 text: `Notificacion: El usuario ${data.username} se ha registrado en la plataforma`
             }
-            const response = await transporter.sendMail(option)
-            pino.info(response)
+            return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
@@ -51,8 +49,7 @@ class MailService {
                 </div>
                 `
             }
-            const response = await transporter.sendMail(option)
-            pino.info(response)
+            return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
@@ -77,8 +74,7 @@ class MailService {
                 </div>
                 `
             }
-            const response = await transporter.sendMail(option)
-            pino.info(response)
+            return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }

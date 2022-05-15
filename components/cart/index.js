@@ -8,6 +8,8 @@ module.exports = app => {
 
     CartRouter.get('/', cartController.bringCart)
     CartRouter.post('/add', cartController.addToCart)
+    CartRouter.post('/purchase', cartController.endPurchase)
+    CartRouter.post('/update', cartController.updateQty)
     CartRouter.put('/:id', cartController.update)
     CartRouter.delete('/:id', cartController.delete)
 }
