@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="../../components/cart/index.js"></script>
 </head>
 <style>
     .contenedor_app{
-    max-width: 900px;
+    max-width: 700px;
     width: 100%;
     margin: 90px auto 0px;
     box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
@@ -29,7 +28,7 @@
             <div class="collapse navbar-collapse d-flex justify-content-xl-between" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="../">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Productos</a>
@@ -38,17 +37,13 @@
                         <a class="nav-link" href="#">Contacto</a>
                     </li>
                 </ul>
-                <div>
-                    <a class="btn btn-primary" href="/cart">Ver Carrito</a>
-                    <a class="btn btn-success" href="/auth/logout">Desloguearme</a>
-                </div>
+                <a class="btn btn-success" href="/logout">Desloguearme</a>
             </div>
         </nav>
         <div class="formulario d-flex flex-column align-items-center">
-            <h1>Bienvenido <%= payload.name %> </h1>
+            <h1>Ordenes de <%= payload.name %> </h1>
             <br>
-            <%- include('./partials/product_list'); %>
-            <br>
+            
             
         </div>
     </div>

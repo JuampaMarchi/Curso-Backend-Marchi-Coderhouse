@@ -11,5 +11,5 @@ module.exports = app => {
     chatApi(app)
     prodApi(app)
 
-    app.get('/', (req, res) => res.send('Hola'))
+    app.get('/', (req, res) => res.redirect('/auth'))
 }

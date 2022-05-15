@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-column align-items-center justify-content-center mt-lg-5">
     <% if (cart) { %>
-    <form action="/api/cart/purchase" method="post">
+    <form action="/cart/purchase" method="post">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -23,11 +23,11 @@
                 <% } %>
                     <tr>
                         <th scope="row">Total</th>
-                        <td colspan="3" style="align-items: center;"><%= cart.products.reduce((acum, item) => acum + item.qty * item.price, 0) %> </td>
+                        <td colspan="3" style="align-items: center;"><%= cart.total %> </td>
                     </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" type="submit">Finalizar Compra</button>
+        <button class="btn btn-primary" type="submit">Generar Orden</button>
     </form>
     <% } else { %>
         <h1 style="background-color: grey;">Ups, no hay productos en el carrito</h1>

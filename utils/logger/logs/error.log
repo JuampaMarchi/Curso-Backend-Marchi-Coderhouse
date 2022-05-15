@@ -25,3 +25,5 @@
 {"level":50,"time":1652538154537,"pid":1632,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ _id: 'register' }\" (type Object) at path \"_id\" for model \"users\""}
 {"level":50,"time":1652563365611,"pid":14216,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}
 {"level":50,"time":1652563394795,"pid":12732,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}
+{"level":50,"time":1652578472711,"pid":13908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: authServices is not defined"}
+{"level":50,"time":1652578478960,"pid":13908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: authServices is not defined"}

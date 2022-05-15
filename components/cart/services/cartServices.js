@@ -35,7 +35,7 @@ class CartServices {
     async bringCart(username){
         try {
             const userCart = await this.collection.findOne({owner_name: username, active: true})
-            if(!userCart) return false
+            if(!userCart) throw new Error(`No existe carritos vacios para el usuario ${username}`)
             return userCart
         } catch (error) {
             pino.error(`Tuvimos este error ${error}`)

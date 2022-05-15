@@ -5,7 +5,7 @@ let email = Joi.string()
 let products = Joi.array().items(Joi.object())
 let status = Joi.string()
 
-const CartSchema = {
+const OrderSchema = {
     order_id,
     email,
     status,
