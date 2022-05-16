@@ -22,7 +22,7 @@ class ChatController {
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
-            if(!payload) return res.status(401).render('error-auth')
+            if(!payload) return res.status(401).send('Error de autenticacion. Por favor vuelva a loguearse')
             res.status(200).render('chat', {payload})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

@@ -11,12 +11,21 @@ class Socket {
         this.io = new SocketIO(http)
         this.sessionId = ''
     }
-    init(){
+    async session(){
+        try {
+            const newSession = await chatServices.createSession({})
+            pino.info(`Sesion creada`)
+            this.sessionId = newSession._id
+        } catch (error) {
+            return pino.error(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
+    async init(){
         try {
             this.io.on('connection', async socket => {
-                this.sessionId = await chatServices.createSession({})
-                pino.info(`Usuario conectado id de Sesion de Chat: ${this.sessionId}`)
-                socket.emit('init', [])
+                pino.info(`Conexion exitosa. Id de Sesion de Chat: ${this.sessionId}`)
+                const chatLog = await chatServices.listForChat(this.sessionId)
+                socket.emit('init', chatLog)
 
                 socket.on('message', async data => {
                     pino.info('Mensaje recibio. Enviando a base de datos...')

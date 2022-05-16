@@ -31,6 +31,7 @@ class Server {
     initialize(){
         const httpServer = new HttpServer(this.app)
         const socket = new Socket(httpServer)
+        socket.session()
         socket.init()
         httpServer.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)

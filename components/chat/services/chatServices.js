@@ -1,3 +1,4 @@
+const moment = require('moment')
 const ChatModel = require('../../../models/chat-model')
 const pino = require('../../../utils/logger/pino')
 const { CRUD, connection } = require('../../../config/db')
@@ -13,7 +14,11 @@ class Chat {
     }
     async createSession(data){
         try {
-            const session = await this.collection.create(data)
+            const sessionData = {
+                created_at: moment().format('DD/MM/YYYY HH:mm:ss'),
+                messages: [{ ...data }]
+            }
+            const session = await this.collection.create(sessionData)
             return session
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -21,14 +26,16 @@ class Chat {
     }
     async insertMessage(id, data){
         try {
-            const session = await this.collection.findById({_id: id})
+            let session = await this.collection.findById({_id: id})
             if(!session) {
                 pino.info('No existe ninguna sesion con ese id, creando nueva sesion...')
                 const newSession = await this.createSession(data)
                 return newSession
             }
-            await this.collection.updateOne({id}, {$push: {messages: data}})
+            await this.collection.updateOne({_id: id}, {$push: {messages: data}})
+            session = await this.collection.findById({_id: id})
             pino.info('mensaje insertado con exito')
+            return session
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
@@ -41,9 +48,9 @@ class Chat {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async listForChat(date){
+    async listForChat(id){
         try {
-            const response = await this.collection.find({sent_at: {$gte: date}})
+            const response = await this.collection.findOne({_id: id})
             return response
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

@@ -63,3 +63,20 @@
 {"level":50,"time":1652664069603,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
 {"level":50,"time":1652664081270,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"chat\" (type string) at path \"_id\" for model \"products\""}
 {"level":50,"time":1652670934973,"pid":7472,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ id: '6281be213a38aeb19cf8910e' }\" (type Object) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652719297440,"pid":1892,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652719297441,"pid":1892,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652721348534,"pid":4736,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721422015,"pid":10136,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721464699,"pid":6868,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721481967,"pid":9508,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721523234,"pid":1848,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721625784,"pid":11944,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652721692717,"pid":2908,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652723012613,"pid":10576,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"mensajes\""}
+{"level":50,"time":1652723057253,"pid":1576,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652723057255,"pid":1576,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652723058011,"pid":1576,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652723058011,"pid":1576,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652723153858,"pid":9980,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652723153858,"pid":9980,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652724032428,"pid":7744,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Assignment to constant variable."}
