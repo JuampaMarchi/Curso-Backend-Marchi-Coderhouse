@@ -11,9 +11,23 @@ class Chat {
         this.client = Chat.client
         this.collection = ChatModel
     }
-    async create(data){
+    async createSession(data){
         try {
-            await this.collection.create(data)
+            const session = await this.collection.create(data)
+            return session
+        } catch (error) {
+            pino.error(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
+    async insertMessage(id, data){
+        try {
+            const session = await this.collection.findById({_id: id})
+            if(!session) {
+                pino.info('No existe ninguna sesion con ese id, creando nueva sesion...')
+                const newSession = await this.createSession(data)
+                return newSession
+            }
+            await this.collection.updateOne({id}, {$push: {messages: data}})
             pino.info('mensaje insertado con exito')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

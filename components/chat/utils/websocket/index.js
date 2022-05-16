@@ -1,6 +1,6 @@
 const pino = require('../../../../utils/logger/pino')
+const moment = require('moment')
 const chatServices = require('../../services/chatServices')
-const Moment = require('../../../../utils/moment/moment')
 const {Server: SocketIO} = require('socket.io')
 
 class Socket {
@@ -9,22 +9,22 @@ class Socket {
         if(Socket.instance) return Socket.instance
         this.instance = this
         this.io = new SocketIO(http)
+        this.sessionId = ''
     }
     init(){
         try {
             this.io.on('connection', async socket => {
-                pino.info(`Usuario conectado con id: ${socket.id}`)
-                const initDate = await Moment.date()
+                this.sessionId = await chatServices.createSession({})
+                pino.info(`Usuario conectado id de Sesion de Chat: ${this.sessionId}`)
                 socket.emit('init', [])
+
                 socket.on('message', async data => {
                     pino.info('Mensaje recibio. Enviando a base de datos...')
                     const message = {
                         ...data,
-                        sent_at: await Moment.date()
+                        sent_at: moment().format('DD/MM/YYYY HH:mm:ss')
                     }
-                    await chatServices.create(message)
-                    console.log(initDate)
-                    const chatLog = await chatServices.listForChat(initDate)
+                    const chatLog = await chatServices.insertMessage(this.sessionId, message)
                     this.io.sockets.emit('newMessage', chatLog)
                 })
                 socket.on('disconnect', data=>{

@@ -1,17 +1,11 @@
 const Joi = require('joi')
 
-let name = Joi.string()
-let email = Joi.string()
-let type = Joi.string()
-let message = Joi.string()
-let sent_at = Joi.date()
+let created_at = Joi.date()
+let messages = Joi.array().items(Joi.object())
 
 const chatSchema = {
-    name,
-    email,
-    type,
-    message,
-    sent_at
+    created_at,
+    messages
 }
 
 module.exports = chatSchema

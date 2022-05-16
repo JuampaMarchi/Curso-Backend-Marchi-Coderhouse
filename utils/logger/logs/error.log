@@ -62,3 +62,4 @@
 {"level":50,"time":1652664069603,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
 {"level":50,"time":1652664069603,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
 {"level":50,"time":1652664081270,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"chat\" (type string) at path \"_id\" for model \"products\""}
+{"level":50,"time":1652670934973,"pid":7472,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"{ id: '6281be213a38aeb19cf8910e' }\" (type Object) at path \"_id\" for model \"mensajes\""}
