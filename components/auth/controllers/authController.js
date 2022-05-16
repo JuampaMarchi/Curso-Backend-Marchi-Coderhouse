@@ -18,7 +18,7 @@ class Auth {
     async loginController(req, res){
         try {
             const { username, password } = req.body
-            if(!username || !password) return res.status(401).render('error-auth')
+            if(!username || !password) return res.status(401).send('Error de autenticacion, intenta loguearte nuevamente')
             const response = await AuthServices.login(username, password);
             res.status(200).cookie('token', response.token, {maxAge: 3600000}).redirect('/products')
         } catch (error) {

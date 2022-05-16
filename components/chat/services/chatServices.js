@@ -1,8 +1,6 @@
 const ChatModel = require('../../../models/chat-model')
 const pino = require('../../../utils/logger/pino')
-const moment = require('../../../utils/moment/moment')
 const { CRUD, connection } = require('../../../config/db')
-const { isValidObjectId } = require('mongoose')
 
 class Chat {
     static client
@@ -13,25 +11,25 @@ class Chat {
         this.client = Chat.client
         this.collection = ChatModel
     }
-    async create(user, message){
+    async create(data){
         try {
-            const item = {
-                name: user.username,
-                email: user.email,
-                type: user.type,
-                message,
-                sent_at: await moment.date()
-            }
-            await this.collection.create(item)
+            await this.collection.create(data)
             pino.info('mensaje insertado con exito')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async list(){
+    async listAll(){
         try {
             const response = await this.collection.find({})
-            console.log(response)
+            return response
+        } catch (error) {
+            pino.error(`Tuvimos el siguiente error: ${error}`)
+        }
+    }
+    async listForChat(date){
+        try {
+            const response = await this.collection.find({sent_at: {$gte: date}})
             return response
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

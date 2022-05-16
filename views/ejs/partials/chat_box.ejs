@@ -1,0 +1,23 @@
+<style>
+    #chat_container.active>div:last-of-type, #chat_container>div:first-of-type {
+        display: block;
+    }
+    #chat_container.active>div:first-of-type, #chat_container>div:last-of-type {
+        display: none;
+    }
+</style>
+<div id="chat_container" class="chat_container container d-flex flex-column justify-content-center align-items-center">    
+    <div>
+        <form id="user_data">
+            <input id="user_name" type="text" name="name" value="<%= payload.name %>" hidden disabled>
+            <input id="user_email" type="text" name="email" value="<%= payload.email %>" hidden disabled>
+            <input id="user_role" type="text" name="role" value="<%= payload.role %>" hidden disabled>
+            <button id="submit_button" type="submit" class="btn btn-info">Ingresar al Chat</button>
+        </form>
+    </div>
+    <div>
+        <input type="text" id="input-text" placeholder="Escribi aca tu mensaje">
+        <button id="send-socket" class="btn btn-success">Enviar</button>
+        <p id="text-container" style="background-color: rgb(170, 170, 170); padding: 20px 30px; width: 100%; max-width: 500px; color: white; border: solid black 2px; border-radius: 10%;"></p>
+    </div>
+</div>

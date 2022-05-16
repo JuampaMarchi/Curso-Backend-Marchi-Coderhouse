@@ -1,60 +1,55 @@
+
 <script>
     let user = null
+    let socket = null
     let user_data_form = document.getElementById('user_data')
+    let user_name = document.getElementById('user_name')
+    let user_email = document.getElementById('user_email')
+    let user_role = document.getElementById('user_role')
     let chat_container = document.getElementById('chat_container')
     let chat_box = document.getElementById('text-container')
     let send_button = document.getElementById('send-socket')
     let text_input = document.getElementById('input-text')
-    loadChat()
-    user_data_form.addEventListener('submit', e=>{
+    user_data_form.addEventListener('submit', e => {
         e.preventDefault()
         user = {
-            id: e.target[4].value,
-            nombre: e.target[0].value,
-            apellido: e.target[1].value,
-            alias: e.target[2].value,
-            edad: e.target[3].value
+            name: user_name.value,
+            email: user_email.value,
+            type: user_role.value,
         }
-        if(user.name == '' || user.email == ''){
-            window.location.reload()
-        }
-        socket.emit('addUser', user);
         chat_container.classList.add('active')
+        socket = io()
         readSockets()
     })
-    send_button.addEventListener('click', e=>{
-        let sentMessage = {
-            author: {...user},
-            mensaje: text_input.value
+    send_button.addEventListener('click', e => {
+        let newMessage = {
+            ...user,
+            message: text_input.value
         }
-        socket.emit('message', sentMessage)
+        console.log(newMessage)
+        socket.emit('message', newMessage)
         text_input.value = ''
     })
-    async function denormalizeChat(chat){
-        const userSchema = new normalizr.schema.Entity('users', {}, {idAttribute: 'alias'})
-
-        const chatSchema =  new normalizr.schema.Entity('chatLog', {
-            author: userSchema
-        }, {idAttribute: 'enviado'})
-
-        return await normalizr.denormalize(chat.result, [chatSchema], chat.entities)
-    }
     function loadChat(){
-        socket.on('init', async data=>{
-            const chatData = await denormalizeChat(data)
-            let inner = ``
-            chatData.forEach(element=>{
-                inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
-            })
-            chat_box.innerHTML = inner
+        socket.on('init', async data => {
+            if(data.length > 0){
+                let inner = ``
+                data.forEach(e => {
+                if(e.role == 'admin') inner += `<b>${e.name}(Admin):</b> <i>${e.message}</i><br>`
+                inner += `<b>${e.name}:</b> <i>${e.message}</i><br>`
+                })
+                chat_box.innerHTML = inner
+            }
         })
     }
     function readSockets(){
-        socket.on('emitToAll', async data=>{
-            const chatData = await denormalizeChat(data)
+        loadChat()
+        socket.on('newMessage', async data => {
+            console.log('data', data)
             let inner = ``
-            chatData.forEach(element=>{
-                inner += `<b>${element.author.alias}: <i>${element.mensaje}</i></b><br>`
+            data.forEach(e => {
+                if(e.role == 'admin') inner += `<b>${e.name}(Admin):</b> <i>${e.message}</i><br>`
+                inner += `<b>${e.name}:</b> <i>${e.message}</i><br>`
             })
             chat_box.innerHTML = inner
         })

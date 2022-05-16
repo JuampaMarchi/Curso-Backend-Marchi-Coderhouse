@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const config = require('../config/index')
 const serverRoutes = require('../routes/index')
+const Socket = require('../components/chat/utils/websocket')
+const {Server: HttpServer} = require('http')
 
 class Server {
     constructor(){
@@ -27,7 +29,10 @@ class Server {
         this.app.set('view engine', 'ejs')
     }
     initialize(){
-        this.app.listen(this.port, ()=>{
+        const httpServer = new HttpServer(this.app)
+        const socket = new Socket(httpServer)
+        socket.init()
+        httpServer.listen(this.port, ()=>{
             console.log(`Servidor iniciado en http://localhost:${this.port}`)
         })
     }

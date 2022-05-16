@@ -43,3 +43,22 @@
 {"level":50,"time":1652634007879,"pid":4024,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: newTotal is not defined"}
 {"level":50,"time":1652635210472,"pid":5612,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
 {"level":50,"time":1652635210473,"pid":5612,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652649449917,"pid":2876,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652649449919,"pid":2876,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652649465156,"pid":2876,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: ReferenceError: req is not defined"}
+{"level":50,"time":1652653062790,"pid":3580,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652653062790,"pid":3580,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652653076004,"pid":3580,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652653076004,"pid":3580,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652656226889,"pid":9012,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Server.socket is not a function"}
+{"level":50,"time":1652656822345,"pid":7140,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652656822346,"pid":7140,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652656831345,"pid":7140,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652656831346,"pid":7140,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652661200012,"pid":9656,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652661200012,"pid":9656,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652661271408,"pid":708,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652661271409,"pid":708,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652664069603,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652664069603,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652664081270,"pid":9352,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: CastError: Cast to ObjectId failed for value \"chat\" (type string) at path \"_id\" for model \"products\""}

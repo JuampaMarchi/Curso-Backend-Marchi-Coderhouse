@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="../socket.io/socket.io.js"></script>
 </head>
 <style>
     .contenedor_app{
@@ -44,9 +45,10 @@
             </div>
         </nav>
         <div class="formulario d-flex flex-column align-items-center">
-            <h1>Bienvenido <%= payload.name %> </h1>
+            <h1><%= payload.name %>, aca podra chatear con nosotros.</h1>
             <br>
-            <%- include('./partials/product_list'); %>
+            <%- include('./partials/chat_box'); %>
+            <%- include('./partials/socket'); %>
             <br>
             
         </div>

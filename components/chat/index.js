@@ -7,4 +7,5 @@ module.exports = app => {
     app.use('/chat', chatRouter)
 
     chatRouter.get('/log', chatController.list)
+    chatRouter.get('/', chatController.get)
 }
