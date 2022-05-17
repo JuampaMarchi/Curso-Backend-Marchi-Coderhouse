@@ -17,7 +17,6 @@ class UserDatabase {
         try {
             const pass = await Bcrypt.encrypt(user_data.password)
             const user = {'username': user_data.username, "fullname": user_data.fullname, 'password': pass, 'email': user_data.email, 'role': 'user'}
-            console.log(user)
             await this.collection.create(user)
             pino.info(`Usuario ${user_data.username} creado con exito!`)
             return user
@@ -46,7 +45,7 @@ class UserDatabase {
     //Encontrar usuario por id 
     async findById(id){
         try {
-            const response = await this.collection.findById({_id: id})
+            const response = await this.collection.findOne({_id: id})
             return response
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

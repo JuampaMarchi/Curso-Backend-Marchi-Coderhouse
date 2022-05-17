@@ -2,7 +2,7 @@ const CartServices = require('../services/cartServices')
 const OrderServices = require('../../users/services/orderServices')
 const AuthServices = require('../../auth/services/authService')
 const pino = require('../../../utils/logger/pino')
-const MailService = require('../../../utils/nodemailer/nodemailer')
+const MailService = require('../../../utils/nodemailer')
 
 class CartController {
     //Ruta de carrito para postman, devuelve carrito
@@ -40,8 +40,8 @@ class CartController {
             const cart = await CartServices.bringCart(payload.name)
             await CartServices.closeCart(payload.name)
             await OrderServices.create(payload, cart)
-            MailService.orderAlert(cart)
-            MailService.orderAlertAdmin(cart)
+            await MailService.orderAlert(cart)
+            await MailService.orderAlertAdmin(payload, cart)
             return res.status(200).render('after_purchase', {payload})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -84,7 +84,7 @@ class CartController {
         try {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
-            if(!payload && payload.role == 'admin') return res.status(401).render('error_auth')
+            if(!payload || payload.role != 'admin') return res.status(401).render('error_auth')
             await CartServices.update(req.params.id, req.body)
             res.status(200).send('carrito actualizado exitosamente')
         } catch (error) {
@@ -95,7 +95,7 @@ class CartController {
         try {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
-            if(!payload && payload.role == 'admin') return res.status(401).render('error_auth')
+            if(!payload || payload.role != 'admin') return res.status(401).render('error_auth')
             await CartServices.delete(req.params.id)
             res.status(200).send('Carrito borrado con exito')
         } catch (error) {

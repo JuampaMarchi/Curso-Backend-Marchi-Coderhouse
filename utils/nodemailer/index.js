@@ -1,35 +1,37 @@
-const transporter = require('../../config/mail')
+const transporter = require('./mailer_config')
 const pino = require('../logger/pino')
 const { mailer } = require('../../config/index')
 
 class MailService {
-    async registerAlert(data){
+    async registerAlert(user){
         try {
             const option = {
                 from: 'Admin',
-                to: mailer.user,
+                to: user.email,
                 subject: 'Nueva Alta',
-                text: `El usuario ${data.username} se ha registrado en la plataforma`
+                text: `El usuario ${user.username} se ha registrado en la plataforma`
             }
+            const response = await transporter.sendMail(option)
             return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
     }
-    async registerAlertAdmin(data){
+    async registerAlertAdmin(user){
         try {
             const option = {
                 from: 'Server',
                 to: mailer.admin_user,
                 subject: 'Nueva Alta',
-                text: `Notificacion: El usuario ${data.username} se ha registrado en la plataforma`
+                text: `Notificacion: El usuario ${user.username} se ha registrado en la plataforma`
             }
+            const response = await transporter.sendMail(option)
             return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
     }
-    async orderAlert(data){
+    async orderAlert(user, data){
         try {
             let items = ''
             data.products.forEach(e => {
@@ -37,7 +39,7 @@ class MailService {
             })
             const option = {
                 from: 'Admin',
-                to: mailer.user,
+                to: user.email,
                 subject: 'Nueva Orden',
                 html: `
                 <div>
@@ -49,12 +51,13 @@ class MailService {
                 </div>
                 `
             }
+            const response = await transporter.sendMail(option)
             return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)
         }
     }
-    async orderAlertAdmin(data){
+    async orderAlertAdmin(user, data){
         try {
             let items = ''
             data.products.forEach(e => {
@@ -66,7 +69,7 @@ class MailService {
                 subject: 'Nueva Orden',
                 html: `
                 <div>
-                    <p>Notificacion de nueva orden. Detalle:</p>
+                    <p>Notificacion de nueva orden del usuario ${user.name}. Detalle:</p>
                     <ul>
                        ${items} 
                     </ul>
@@ -74,6 +77,7 @@ class MailService {
                 </div>
                 `
             }
+            const response = await transporter.sendMail(option)
             return response
         } catch (error) {
             pino.error(`Tuvimos este error: ${error}`)

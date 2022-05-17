@@ -23,6 +23,7 @@ class Socket {
     async init(){
         try {
             this.io.on('connection', async socket => {
+                socket.id
                 pino.info(`Conexion exitosa. Id de Sesion de Chat: ${this.sessionId}`)
                 const chatLog = await chatServices.listForChat(this.sessionId)
                 socket.emit('init', chatLog)

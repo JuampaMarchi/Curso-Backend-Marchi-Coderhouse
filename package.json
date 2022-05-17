@@ -33,7 +33,6 @@
     "express": "^4.17.1",
     "express-jwt": "^7.7.0",
     "express-session": "^1.17.2",
-    "faker": "5.5.3",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",

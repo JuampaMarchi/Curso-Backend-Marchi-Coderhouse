@@ -1,6 +1,6 @@
 const userServices = require('../services/userService')
 const pino = require('../../../utils/logger/pino')
-const mailer = require('../../../utils/nodemailer/nodemailer')
+const mailer = require('../../../utils/nodemailer')
 const authServices = require('../../auth/services/authService')
 
 class UserController {
@@ -57,14 +57,15 @@ class UserController {
     async create(req, res){
         try {
             const response = await userServices.create(req.body)
-            mailer.registerAlert()
-            mailer.registerAlertAdmin()
+            mailer.registerAlert(req.body)
+            mailer.registerAlertAdmin(req.body)
             res.status(200).json(response)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
     }
+    //Controlador para actualizar usuario, solo disponible a administradores
     async update(req, res){
         try {
             const token = req.cookies.token
@@ -77,6 +78,7 @@ class UserController {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
         }
+    //Controlador para borrar usuario, solo disponible a administradores
     }async delete(req, res){
         try {
             const token = req.cookies.token
