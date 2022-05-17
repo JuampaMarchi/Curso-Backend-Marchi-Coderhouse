@@ -19,13 +19,13 @@ class CartController {
         }
     }
     //Vista del carrito para Frontend
-    async bringCartView(req, res){
+    async bringAll(req, res){
         try {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
-            if(!payload) return res.status(401).render('error_auth')
-            const cart = await CartServices.bringCart(payload.name)
-            return res.status(200).render('cart', {cart})
+            if(!payload || payload.role != 'admin') return res.status(401).render('error_auth')
+            const cartList = await CartServices.bringAll()
+            return res.status(200).json(cartList)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')
@@ -40,7 +40,7 @@ class CartController {
             const cart = await CartServices.bringCart(payload.name)
             await CartServices.closeCart(payload.name)
             await OrderServices.create(payload, cart)
-            await MailService.orderAlert(cart)
+            await MailService.orderAlert(payload, cart)
             await MailService.orderAlertAdmin(payload, cart)
             return res.status(200).render('after_purchase', {payload})
         } catch (error) {
@@ -55,7 +55,7 @@ class CartController {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
             if(!payload) return res.status(401).render('error_auth')
-            await CartServices.addToCart(payload.name, {name: name, qty: Number(qty), price: Number(price)})
+            await CartServices.addToCart(payload, {name: name, qty: Number(qty), price: Number(price)})
             res.status(200).send('Producto agregado al carrito exitosamente')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -71,9 +71,9 @@ class CartController {
             const array = Object.values(req.body)
             const newCart = [] 
             for (const item of array[0]) newCart.push({name: item}) 
-            for (let i = 0; i < newCart.length; i++) newCart[i].price = array[1][i]
-            for (let i = 0; i < newCart.length; i++) newCart[i].qty = array[2][i]
-            await CartServices.update(req.params.id, newCart)
+            for (let i = 0; i < newCart.length; i++) newCart[i].price = Number(array[1][i])
+            for (let i = 0; i < newCart.length; i++) newCart[i].qty = Number(array[2][i])
+            await CartServices.update(payload.name, newCart)
             res.status(200).render('after_update', {payload})
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -85,7 +85,7 @@ class CartController {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
             if(!payload || payload.role != 'admin') return res.status(401).render('error_auth')
-            await CartServices.update(req.params.id, req.body)
+            await CartServices.update(payload.name, req.body)
             res.status(200).send('carrito actualizado exitosamente')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

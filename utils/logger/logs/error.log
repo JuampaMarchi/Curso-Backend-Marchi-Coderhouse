@@ -82,3 +82,14 @@
 {"level":50,"time":1652724032428,"pid":7744,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Assignment to constant variable."}
 {"level":50,"time":1652743808334,"pid":564,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
 {"level":50,"time":1652743808335,"pid":564,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
+{"level":50,"time":1652802585514,"pid":6676,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error TypeError: Cannot read properties of undefined (reading 'products')"}
+{"level":50,"time":1652802755070,"pid":1052,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error TypeError: Cannot read properties of undefined (reading 'products')"}
+{"level":50,"time":1652803178059,"pid":9936,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: username is not defined"}
+{"level":50,"time":1652803283761,"pid":572,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: MongooseError: Operation `mensajes.insertOne()` buffering timed out after 10000ms"}
+{"level":50,"time":1652803283761,"pid":572,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Cannot read properties of undefined (reading '_id')"}
+{"level":50,"time":1652803307375,"pid":10204,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: username is not defined"}
+{"level":50,"time":1652803501083,"pid":4512,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: username is not defined"}
+{"level":50,"time":1652803564075,"pid":7256,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: username is not defined"}
+{"level":50,"time":1652804856666,"pid":8672,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error Error: No existe carritos vacios para el usuario batman"}
+{"level":50,"time":1652804861271,"pid":8672,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error ReferenceError: userCart is not defined"}
+{"level":50,"time":1652804954103,"pid":3932,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos este error: TypeError: Cannot read properties of undefined (reading 'products')"}

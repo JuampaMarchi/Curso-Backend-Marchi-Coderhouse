@@ -42,7 +42,7 @@ class Order {
         try {
             let id = 1
             const exist = await this.collection.find({})
-            if(exist.length > 1) id = exist.reduce((p, c) => p != c.id ? p : p + 1, 1)
+            if(exist.length > 0) id = exist.reduce((p, c) => p != c.id ? p : p + 1, 1)
             await this.collection.create({order_id: id, email: user.email, status: 'creada', products: items})
             pino.info(`Orden nro. ${id} generada con exito`)
         } catch (error) {

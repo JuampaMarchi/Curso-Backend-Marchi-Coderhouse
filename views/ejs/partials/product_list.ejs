@@ -19,7 +19,7 @@
                 </thead>
                 <tbody id="table-body">
                 <% for(item of products){ %>
-                    <form action="/api/cart/addToCart" method="post">
+                    <form action="/cart/add" method="post">
                         <tr>
                             <th scope="row"><%=item._id %></th>
                             <td><input class="form-input" type="text" name="name" value="<%=item.product_name %>" readonly="true"></td>
