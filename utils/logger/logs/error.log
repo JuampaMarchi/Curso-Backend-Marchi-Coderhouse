@@ -80,3 +80,5 @@
 {"level":50,"time":1652723153858,"pid":9980,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
 {"level":50,"time":1652723153858,"pid":9980,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}
 {"level":50,"time":1652724032428,"pid":7744,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: TypeError: Assignment to constant variable."}
+{"level":50,"time":1652743808334,"pid":564,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: JsonWebTokenError: jwt must be provided"}
+{"level":50,"time":1652743808335,"pid":564,"hostname":"DESKTOP-3BSME3H","msg":"Tuvimos el siguiente error: Error: Token invalido"}

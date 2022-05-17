@@ -6,8 +6,7 @@ class Auth {
     async login(req, res){
         try {
             const token = req.cookies.token
-            const payload = await AuthServices.verifyToken(token)
-            if(!payload) return res.status(200).render('log_in')
+            if(!token) return res.status(200).render('log_in')
             res.status(200).redirect('/products')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)

@@ -50,8 +50,11 @@
             let inner = ``
             data.messages.forEach(e => {
                 if(e.name != undefined) {
-                    if(e.type == 'admin') inner += `<b>${e.name}(Admin):</b> <i>${e.message}</i><br>`
-                    inner += `<b>${e.name}:</b> <i>${e.message}</i><br>`
+                    if(e.type == 'admin') {
+                        inner += `<b>${e.name}(Admin):</b> <i>${e.message}</i><br>`
+                    } else {
+                        inner += `<b>${e.name}:</b> <i>${e.message}</i><br>`
+                    }
                 }
             })
             chat_box.innerHTML = inner
