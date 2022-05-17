@@ -8,4 +8,6 @@ module.exports = app => {
 
     chatRouter.get('/log', chatController.list)
     chatRouter.get('/', chatController.get)
+    chatRouter.put('/:id', chatController.get)
+    chatRouter.delete('/:id', chatController.get)
 }

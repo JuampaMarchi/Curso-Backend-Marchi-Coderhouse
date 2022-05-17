@@ -5,7 +5,7 @@ const pino = require('../../../utils/logger/pino')
 const MailService = require('../../../utils/nodemailer')
 
 class CartController {
-    //Ruta de carrito para postman, devuelve carrito
+    //Genera vista de carrito de usuario
     async bringCart(req, res){
         try {
             const token = req.cookies.token

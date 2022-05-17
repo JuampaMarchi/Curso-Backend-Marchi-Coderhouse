@@ -8,7 +8,7 @@ class Product {
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
-            if(!payload) return res.status(401).render('error-auth')
+            if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
             const products = await productServices.getAll()
             res.status(200).json(products)
         } catch (error) {
@@ -34,10 +34,10 @@ class Product {
         try {
             const token = req.cookies.token
             const payload = await authServices.verifyToken(token)
-            if(!payload) return res.status(401).render('error-auth')
+            if(!payload || payload.role != 'admin') return res.status(401).render('error-auth')
             const { id } = req.params
             const product = await productServices.getOne(id)
-            res.status(200).render('product_detail', {payload, product})
+            res.status(200).json(product)
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
             res.status(400).render('error')

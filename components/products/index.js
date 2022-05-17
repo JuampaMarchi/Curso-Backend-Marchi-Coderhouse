@@ -9,7 +9,8 @@ module.exports = app => {
     productRouter.get('/', productController.getAllView)
     productRouter.get('/list', productController.getAll)
     productRouter.post('/add', productController.create)
-    productRouter.get('/:id', productController.getOne)
+    productRouter.get('/get/:id', productController.getOne)
+    productRouter.get('/:id', productController.getOneView)
     productRouter.put('/:id', productController.update)
     productRouter.delete('/:id', productController.delete)
 }

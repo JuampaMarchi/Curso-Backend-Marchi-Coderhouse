@@ -13,7 +13,6 @@ module.exports = app => {
     UserRouter.get('/orders', orderController.getAll)
     UserRouter.get('/orders/:id', orderController.getOne)
     UserRouter.get('/user-orders', orderController.getUserOrdersView)
-    UserRouter.get('/user-orders-admin', orderController.getUserOrders)
     UserRouter.post('/create', userController.create)
     UserRouter.get('/:id', userController.getOne)
     UserRouter.put('/:id', userController.update)

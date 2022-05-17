@@ -56,11 +56,11 @@ class Chat {
             pino.error(`Tuvimos el siguiente error: ${error}`)
         }
     }
-    async update(id, newMessage){
+    async update(id, data){
         try {
-            const response = await this.collection.findById({_id: id})
+            const response = await this.collection.findOne({_id: id})
             if(!response) throw new Error('No se encontro ningun mensaje con ese id')
-            await this.collection.updateOne({_id: id}, {message: newMessage})
+            await this.collection.updateOne({_id: id}, data)
             pino.info('Mensaje actualizado con exito')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
@@ -68,7 +68,7 @@ class Chat {
     }
     async delete(id){
         try {
-            const response = await this.collection.findById({_id: id})
+            const response = await this.collection.findOne({_id: id})
             if(!response) throw new Error('No se encontro ningun mensaje con ese id')
             await this.collection.deleteOne({_id: id})
             pino.info('Mensaje eliminado con exito')
