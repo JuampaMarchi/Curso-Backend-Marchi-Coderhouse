@@ -85,7 +85,7 @@ class CartController {
             const token = req.cookies.token
             const payload = await AuthServices.verifyToken(token)
             if(!payload || payload.role != 'admin') return res.status(401).render('error_auth')
-            await CartServices.update(payload.name, req.body)
+            await CartServices.update(req.params.id, req.body)
             res.status(200).send('carrito actualizado exitosamente')
         } catch (error) {
             pino.error(`Tuvimos el siguiente error: ${error}`)
